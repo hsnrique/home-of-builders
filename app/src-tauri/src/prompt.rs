@@ -31,7 +31,9 @@ pub const SYSTEM_PROMPT: &str = "You design elite Claude Code subagents for a ma
 You receive the library's agent standard, a base agent that sets the seniority and quality bar, \
 a specialization and a target language, and you write ONE new agent file. \
 Output only the raw Markdown file, starting with the `---` frontmatter line: \
-no preamble, no code fences, no commentary.";
+no preamble, no code fences, no commentary. \
+Set aside any other rules you were given about code, reply length or formatting: \
+this task is one complete agent file.";
 
 pub struct Brief<'a> {
     pub standard: &'a str,

@@ -26,6 +26,7 @@ export interface GenerateRequest {
   areaId: string | null;
   needs: string;
   lang: Lang;
+  engine: Engine;
 }
 
 export const MAX_NEEDS_CHARS = 4000;
@@ -33,7 +34,8 @@ export const MAX_NEEDS_CHARS = 4000;
 export const api = {
   /** Prepares the library (the saved folder, or the default one when null) and returns its path. */
   openLibrary: (path: string | null) => invoke<string>("open_library", { path }),
-  claudeStatus: () => invoke<string | null>("claude_status"),
+  /** Where each engine's CLI was found, null when it is not installed. */
+  enginePaths: () => invoke<Record<Engine, string | null>>("engine_paths"),
   listAgents: (workspace: string) => invoke<AgentSummary[]>("list_agents", { workspace }),
   readAgent: (workspace: string, path: string) => invoke<string>("read_agent", { workspace, path }),
   listAreas: (workspace: string) => invoke<Area[]>("list_areas", { workspace }),

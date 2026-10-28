@@ -1,9 +1,9 @@
 import { revealItemInDir } from "@tauri-apps/plugin-opener";
 
-import { api } from "../api";
+import { api, ENGINE_NAMES } from "../api";
 import { h } from "../dom";
 import { errorText, t } from "../i18n";
-import { installButtons } from "../install";
+import { installRow } from "../install";
 import { skeleton } from "../skeleton";
 import type { Ctx } from "../state";
 
@@ -11,7 +11,7 @@ import type { Ctx } from "../state";
 export function renderOutput(ctx: Ctx): HTMLElement {
   switch (ctx.state.create.status) {
     case "generating":
-      return progress(ctx.state.create.startedAt);
+      return progress(ctx.state.create.startedAt, ENGINE_NAMES[ctx.state.engine]);
     case "review":
       return review(ctx);
     case "saved":
@@ -21,7 +21,7 @@ export function renderOutput(ctx: Ctx): HTMLElement {
   }
 }
 
-function progress(startedAt: number): HTMLElement {
+function progress(startedAt: number, engine: string): HTMLElement {
   const elapsed = h("span", { class: "mono muted" }, secondsSince(startedAt));
   const timer = window.setInterval(() => {
     if (!elapsed.isConnected) return window.clearInterval(timer);
@@ -30,8 +30,8 @@ function progress(startedAt: number): HTMLElement {
   return h(
     "div",
     { class: "panel output", role: "status" },
-    h("div", { class: "output-head" }, h("span", {}, t("create.generating")), elapsed),
-    h("p", { class: "muted small" }, t("create.hint")),
+    h("div", { class: "output-head" }, h("span", {}, t("create.generating", { engine })), elapsed),
+    h("p", { class: "muted small" }, t("create.hint", { engine })),
     skeleton(),
   );
 }
@@ -99,7 +99,7 @@ function saved(ctx: Ctx): HTMLElement {
       h("button", { class: "btn quiet", onclick: () => revealItemInDir(`${workspace}/${agent.path}`) }, t("action.showFile")),
       h("button", { class: "btn", onclick: open }, t("action.openInLibrary")),
       h("button", { class: "btn", onclick: another }, t("action.createAnother")),
-      ...installButtons(workspace, agent),
     ),
+    installRow(workspace, agent),
   );
 }

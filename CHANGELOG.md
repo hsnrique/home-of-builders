@@ -6,6 +6,7 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ### Added
 
+- Generate agents with Codex. Pick Claude Code or Codex in Settings; by default the app uses whichever is installed.
 - Install any agent in Codex. The app converts it to the TOML format Codex reads and saves it in `~/.codex/agents`.
 
 ### Changed

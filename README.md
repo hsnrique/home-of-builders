@@ -5,7 +5,7 @@
 <h1 align="center">Home of Builders</h1>
 
 <p align="center">
-  Elite marketing agents for Claude Code, and a small desktop app that builds new ones for your niche.
+  Elite marketing agents for Claude Code and Codex, and a small desktop app that builds new ones for your niche.
 </p>
 
 <p align="center">
@@ -22,7 +22,7 @@
 
 ---
 
-Pick one of the 18 base agents, cross it with an area (28 niches and channels) and your specific needs, choose English or Portuguese, and the app asks your local Claude Code to rewrite the whole agent for that context. You review the draft, save it to your library, and install it in Claude Code with one click.
+Pick one of the 18 base agents, cross it with an area (28 niches and channels) and your specific needs, choose English or Portuguese, and the app asks your local Claude Code or Codex to rewrite the whole agent for that context. You review the draft, save it to your library, and install it in Claude Code with one click.
 
 **Real example:** [`gestor-trafego-implante-odontologico.md`](agents/generated/pt/gestor-trafego-implante-odontologico.md) came from `traffic-manager` × *Clinics & healthcare* × "dental implant clinic in Curitiba, R$5k/month, leads go to WhatsApp", in Portuguese, in 74 seconds.
 
@@ -55,17 +55,17 @@ The playbooks apply the frameworks of each field's reference books and name them
 
 ## Install
 
-1. Install [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) and run `claude` once to log in.
+1. Install [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) or [Codex](https://github.com/openai/codex) and log in once.
 2. Get the app:
    - **macOS:** download the `.dmg` from [Releases](https://github.com/hsnrique/home-of-builders/releases/latest). Builds are not notarized yet: the first time, open the app, then go to **System Settings → Privacy & Security** and click **Open Anyway**.
    - **Windows and Linux:** [build from source](#build-from-source).
 3. Open it. Your library is created at `Documents/Home of Builders` with all base agents inside.
 
-Only want the agents? Copy any file from [`agents/`](agents) into `~/.claude/agents/` and Claude Code will use it.
+Only want the agents? Copy any file from [`agents/`](agents) into `~/.claude/agents/` and Claude Code will use it. Codex reads agents as TOML: use **Install in → Codex** in the app.
 
 ## How generation works
 
-- The app runs `claude -p --safe-mode --tools ""` on your machine. It uses your Claude Code login: no API key, no cost beyond your plan.
+- The app runs `claude -p --safe-mode --tools ""` or `codex exec --sandbox read-only` on your machine, whichever you pick in Settings. It uses your own login: no API key, no cost beyond your plan.
 - `--tools ""` means the model can only answer with text; it cannot read or change your files.
 - `--safe-mode` keeps your personal `CLAUDE.md`, hooks and plugins out of the generation, so every agent comes out the same way for everyone.
 - Nothing else leaves your computer. The app has no telemetry and no account.
@@ -85,7 +85,7 @@ Add an area by editing `catalog/areas.json`. Add a base agent by dropping a file
 
 ## Build from source
 
-Requires Node 24, Rust stable and Claude Code.
+Requires Node 24, Rust stable and Claude Code or Codex.
 
 ```bash
 cd app
@@ -102,7 +102,7 @@ New agents, areas, translations and fixes are welcome. Start with [CONTRIBUTING.
 
 ## Sponsor
 
-Home of Builders is free and stays free. If it saves you a hire or a weekend, [buy me a coffee](https://buymeacoffee.com/hsnrique): it pays for new agents and keeps the app current with Claude Code.
+Home of Builders is free and stays free. If it saves you a hire or a weekend, [buy me a coffee](https://buymeacoffee.com/hsnrique): it pays for new agents and keeps the app current with Claude Code and Codex.
 
 ## Credits
 

@@ -1,4 +1,4 @@
-import type { AgentSummary, Area, Lang } from "./api";
+import type { AgentSummary, Area, Engine, Lang } from "./api";
 
 export type View = "library" | "create" | "settings";
 export type CreateStatus = "idle" | "generating" | "review" | "saved";
@@ -21,7 +21,9 @@ export interface CreateState {
 export interface AppState {
   view: View;
   workspace: string | null;
-  claudePath: string | null;
+  enginePaths: Record<Engine, string | null>;
+  /** Which CLI generates agents. */
+  engine: Engine;
   agents: AgentSummary[];
   areas: Area[];
   loadError: string | null;
@@ -47,7 +49,8 @@ export function initialState(uiLang: Lang): AppState {
   return {
     view: "library",
     workspace: null,
-    claudePath: null,
+    enginePaths: { claude: null, codex: null },
+    engine: "claude",
     agents: [],
     areas: [],
     loadError: null,

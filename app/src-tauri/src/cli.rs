@@ -2,18 +2,17 @@ use std::io::Write;
 use std::path::{Path, PathBuf};
 use std::process::{Command, Stdio};
 
-const BINARY: &str = if cfg!(windows) {
-    "claude.exe"
-} else {
-    "claude"
-};
-
 /// GUI apps on macOS start with a minimal PATH, so the usual install folders are
 /// checked after PATH.
-pub fn locate() -> Option<PathBuf> {
+pub fn locate(name: &str) -> Option<PathBuf> {
+    let file = if cfg!(windows) {
+        format!("{name}.exe")
+    } else {
+        name.to_string()
+    };
     search_dirs()
         .into_iter()
-        .map(|dir| dir.join(BINARY))
+        .map(|dir| dir.join(&file))
         .find(|candidate| candidate.is_file())
 }
 
@@ -21,7 +20,7 @@ fn search_dirs() -> Vec<PathBuf> {
     let mut dirs: Vec<PathBuf> = std::env::var_os("PATH")
         .map(|p| std::env::split_paths(&p).collect())
         .unwrap_or_default();
-    // Windows has no HOME; the native installer puts claude.exe under %USERPROFILE%.
+    // Windows has no HOME; native installers put their binaries under %USERPROFILE%.
     let home = std::env::var_os("HOME").or_else(|| std::env::var_os("USERPROFILE"));
     if let Some(home) = home.map(PathBuf::from) {
         dirs.extend([
@@ -37,27 +36,19 @@ fn search_dirs() -> Vec<PathBuf> {
     dirs
 }
 
-/// Runs one headless Claude Code turn on the user's own subscription.
-/// `--safe-mode` keeps the user's CLAUDE.md, hooks and plugins out of the generation and
-/// `--tools ""` means the model can only write text back; it never touches the disk.
+/// Runs one headless CLI turn with the prompt on stdin (it can exceed argv limits) and
+/// returns stdout. `label` names the CLI in error messages.
 // Known limit: no timeout; a hung CLI leaves the UI spinning. Add a kill timer if it happens.
-pub fn run(binary: &Path, system_prompt: &str, prompt: &str) -> Result<String, String> {
+pub fn run(binary: &Path, args: &[&str], prompt: &str, label: &str) -> Result<String, String> {
     let mut child = Command::new(binary)
-        .args([
-            "-p",
-            "--safe-mode",
-            "--tools",
-            "",
-            "--no-session-persistence",
-        ])
-        .args(["--output-format", "text", "--system-prompt", system_prompt])
+        .args(args)
         .current_dir(std::env::temp_dir())
         .env("PATH", child_path(binary))
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
         .spawn()
-        .map_err(|e| format!("Claude Code: {e}"))?;
+        .map_err(|e| format!("{label}: {e}"))?;
     let mut stdin = child.stdin.take().expect("stdin is piped");
     stdin
         .write_all(prompt.as_bytes())
@@ -67,7 +58,7 @@ pub fn run(binary: &Path, system_prompt: &str, prompt: &str) -> Result<String, S
     if output.status.success() {
         return Ok(String::from_utf8_lossy(&output.stdout).into_owned());
     }
-    Err(failure_message(&output.stdout, &output.stderr))
+    Err(failure_message(label, &output.stdout, &output.stderr))
 }
 
 /// npm-installed CLIs need `node` on PATH, which GUI apps do not inherit.
@@ -79,44 +70,39 @@ fn child_path(binary: &Path) -> std::ffi::OsString {
     std::env::join_paths(dirs).unwrap_or_default()
 }
 
-fn failure_message(stdout: &[u8], stderr: &[u8]) -> String {
+fn failure_message(label: &str, stdout: &[u8], stderr: &[u8]) -> String {
     let text = [stderr, stdout]
         .iter()
         .map(|bytes| String::from_utf8_lossy(bytes).trim().to_string())
         .find(|text| !text.is_empty())
         .unwrap_or_else(|| "unknown error".into());
-    format!(
-        "Claude Code: {}",
-        text.chars().take(500).collect::<String>()
-    )
+    format!("{label}: {}", text.chars().take(500).collect::<String>())
 }
 
 #[cfg(all(test, unix))]
-mod tests {
+pub mod tests {
     use super::*;
     use std::os::unix::fs::PermissionsExt;
 
-    fn fake_cli(tag: &str, script: &str) -> PathBuf {
-        let path = std::env::temp_dir().join(format!("fake-claude-{tag}-{}", std::process::id()));
+    pub fn fake_cli(tag: &str, script: &str) -> PathBuf {
+        let path = std::env::temp_dir().join(format!("fake-cli-{tag}-{}", std::process::id()));
         std::fs::write(&path, format!("#!/bin/sh\n{script}\n")).unwrap();
         std::fs::set_permissions(&path, std::fs::Permissions::from_mode(0o755)).unwrap();
         path
     }
 
     #[test]
-    fn pipes_prompt_through_stdin_and_passes_isolation_flags() {
+    fn pipes_prompt_through_stdin() {
         let cli = fake_cli("echo", r#"echo "$@"; cat"#);
-        let output = run(&cli, "SYS", "the prompt").unwrap();
-        assert!(output.contains("-p --safe-mode --tools  --no-session-persistence"));
-        assert!(output.contains("--system-prompt SYS"));
-        assert!(output.ends_with("the prompt"));
+        let output = run(&cli, &["-p", "x y"], "the prompt", "Tool").unwrap();
+        assert_eq!(output, "-p x y\nthe prompt");
     }
 
     #[test]
     fn surfaces_cli_errors() {
         let cli = fake_cli("fail", "echo 'Please run /login' >&2; exit 1");
         assert_eq!(
-            run(&cli, "", "").unwrap_err(),
+            run(&cli, &[], "", "Claude Code").unwrap_err(),
             "Claude Code: Please run /login"
         );
     }

@@ -4,7 +4,7 @@ Thanks for helping. The most valuable contributions are better agents: sharper p
 
 ## Set up
 
-Requires Node 24, Rust stable and [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) logged in.
+Requires Node 24, Rust stable and [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) or [Codex](https://github.com/openai/codex) logged in.
 
 ```bash
 cd app
@@ -21,7 +21,7 @@ npm test                            # i18n and UI checks
 cd src-tauri && cargo test          # backend tests
 ```
 
-`cargo test -- --ignored generates_a_real_agent` runs one real generation through your Claude Code login. Use it when you change the prompt.
+`cargo test -- --ignored generates_a_real_agent` runs one real generation with each engine, through your own logins. Use it when you change the prompt.
 
 ## Website
 

@@ -40,7 +40,7 @@
       "../../STANDARD.md": "library/STANDARD.md"
     },
     "category": "DeveloperTool",
-    "shortDescription": "Build elite marketing agents for Claude Code",
+    "shortDescription": "Build elite marketing agents for Claude Code and Codex",
     "copyright": "Copyright (c) 2026 Henrique Braga. MIT License.",
     "macOS": {
       "signingIdentity": "-"
