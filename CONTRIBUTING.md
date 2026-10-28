@@ -25,7 +25,7 @@ cd src-tauri && cargo test          # backend tests
 
 ## Website
 
-The landing page in `site/` is a small Vite project. Vercel builds it from `vercel.json`.
+The landing page in `site/` is a small Vite project. On Vercel, set the project's **Root Directory** to `site`; the build settings and security headers come from `site/vercel.json`.
 
 ```bash
 cd site
