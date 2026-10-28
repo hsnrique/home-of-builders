@@ -12,7 +12,7 @@
   <a href="https://github.com/hsnrique/home-of-builders/releases/latest">Download</a> ·
   <a href="https://homeofbuilders.com">Website</a> ·
   <a href="README.pt-BR.md">Português</a> ·
-  <a href="https://github.com/sponsors/hsnrique">Sponsor</a>
+  <a href="https://buymeacoffee.com/hsnrique">Sponsor</a>
 </p>
 
 <p align="center">
@@ -102,7 +102,7 @@ New agents, areas, translations and fixes are welcome. Start with [CONTRIBUTING.
 
 ## Sponsor
 
-Home of Builders is free and stays free. If it saves you a hire or a weekend, [sponsoring on GitHub](https://github.com/sponsors/hsnrique) pays for new agents and keeps the app current with Claude Code.
+Home of Builders is free and stays free. If it saves you a hire or a weekend, [buy me a coffee](https://buymeacoffee.com/hsnrique): it pays for new agents and keeps the app current with Claude Code.
 
 ## Credits
 

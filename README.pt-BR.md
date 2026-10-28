@@ -12,7 +12,7 @@
   <a href="https://github.com/hsnrique/home-of-builders/releases/latest">Baixar</a> ·
   <a href="https://homeofbuilders.com">Site</a> ·
   <a href="README.md">English</a> ·
-  <a href="https://github.com/sponsors/hsnrique">Patrocinar</a>
+  <a href="https://buymeacoffee.com/hsnrique">Patrocinar</a>
 </p>
 
 ---
@@ -99,7 +99,7 @@ Agentes novos, áreas, traduções e correções são bem-vindos. Comece pelo [C
 
 ## Patrocinar
 
-O Home of Builders é grátis e continua grátis. Se ele te poupou uma contratação ou um fim de semana, [patrocinar no GitHub](https://github.com/sponsors/hsnrique) paga agentes novos e mantém o app em dia com o Claude Code.
+O Home of Builders é grátis e continua grátis. Se ele te poupou uma contratação ou um fim de semana, [me pague um café](https://buymeacoffee.com/hsnrique): isso paga agentes novos e mantém o app em dia com o Claude Code.
 
 ## Créditos
 
