@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org).
 
-## [Unreleased]
+## [0.1.3] - 2026-10-28
 
 ### Added
 
@@ -11,6 +11,7 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ### Changed
 
+- The macOS app is signed and notarized by Apple and ships as one universal DMG for Apple Silicon and Intel. It opens without security warnings.
 - Release downloads are macOS only. The app still runs on Windows and Linux: build it from source.
 
 ## [0.1.2] - 2026-10-28

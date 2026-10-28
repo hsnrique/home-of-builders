@@ -57,7 +57,7 @@ The playbooks apply the frameworks of each field's reference books and name them
 
 1. Install [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) or [Codex](https://github.com/openai/codex) and log in once.
 2. Get the app:
-   - **macOS:** download the `.dmg` from [Releases](https://github.com/hsnrique/home-of-builders/releases/latest). Builds are not notarized yet: the first time, open the app, then go to **System Settings → Privacy & Security** and click **Open Anyway**.
+   - **macOS:** download the `.dmg` from [Releases](https://github.com/hsnrique/home-of-builders/releases/latest), open it and drag the app to Applications.
    - **Windows and Linux:** [build from source](#build-from-source).
 3. Open it. Your library is created at `Documents/Home of Builders` with all base agents inside.
 
