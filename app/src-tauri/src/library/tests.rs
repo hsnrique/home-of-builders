@@ -1,11 +1,13 @@
 use super::*;
 
 fn agent(name: &str) -> String {
-    format!("---\nname: {name}\ndescription: Does {name} things.\nmodel: inherit\n---\n\n# {name}\n")
+    format!(
+        "---\nname: {name}\ndescription: Does {name} things.\nmodel: inherit\n---\n\n# {name}\n"
+    )
 }
 
 fn temp_workspace(tag: &str) -> (PathBuf, Workspace) {
-    let dir = std::env::temp_dir().join(format!("marketing-agents-{tag}-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("hob-library-{tag}-{}", std::process::id()));
     let _ = fs::remove_dir_all(&dir);
     fs::create_dir_all(dir.join("agents/core")).unwrap();
     fs::write(dir.join("agents/core/copywriter.md"), agent("copywriter")).unwrap();
@@ -51,8 +53,14 @@ fn save_writes_by_language_and_never_overwrites() {
 #[test]
 fn save_rejects_invalid_or_oversized_agents() {
     let (_dir, ws) = temp_workspace("reject");
-    assert_eq!(save(&ws, Lang::En, "# no frontmatter").unwrap_err(), "error.invalidAgent");
-    assert_eq!(save(&ws, Lang::En, &agent("../escape")).unwrap_err(), "error.invalidAgent");
+    assert_eq!(
+        save(&ws, Lang::En, "# no frontmatter").unwrap_err(),
+        "error.invalidAgent"
+    );
+    assert_eq!(
+        save(&ws, Lang::En, &agent("../escape")).unwrap_err(),
+        "error.invalidAgent"
+    );
     let huge = agent("big") + &"x".repeat(MAX_AGENT_BYTES);
     assert_eq!(save(&ws, Lang::En, &huge).unwrap_err(), "error.tooLarge");
 }

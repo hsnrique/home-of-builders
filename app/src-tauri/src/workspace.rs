@@ -1,7 +1,7 @@
 use std::fs;
 use std::path::{Path, PathBuf};
 
-use crate::catalog::{parse_areas, Area};
+use crate::catalog::{Area, parse_areas};
 use crate::prompt::Lang;
 
 /// The agents library on disk: a folder with `agents/`, `catalog/` and `STANDARD.md`
@@ -110,7 +110,10 @@ mod tests {
     #[test]
     fn rejects_folders_without_agents() {
         assert_eq!(Workspace::open("/").err().unwrap(), "error.workspace");
-        assert_eq!(Workspace::open("/definitely/missing").err().unwrap(), "error.workspace");
+        assert_eq!(
+            Workspace::open("/definitely/missing").err().unwrap(),
+            "error.workspace"
+        );
     }
 
     /// A miniature of the bundle `tauri.conf.json` ships under `library/`.
@@ -139,11 +142,17 @@ mod tests {
         fs::create_dir_all(target.join("agents/core")).unwrap();
         fs::write(target.join("agents/core/traffic-manager.md"), "mine").unwrap();
         seed(&bundle("edit"), &target).unwrap();
-        assert_eq!(fs::read_to_string(target.join("agents/core/traffic-manager.md")).unwrap(), "mine");
+        assert_eq!(
+            fs::read_to_string(target.join("agents/core/traffic-manager.md")).unwrap(),
+            "mine"
+        );
 
         let unrelated = temp_dir("unrelated");
         fs::create_dir_all(&unrelated).unwrap();
         fs::write(unrelated.join("notes.txt"), "x").unwrap();
-        assert_eq!(seed(&bundle("unrelated"), &unrelated).unwrap_err(), "error.workspace");
+        assert_eq!(
+            seed(&bundle("unrelated"), &unrelated).unwrap_err(),
+            "error.workspace"
+        );
     }
 }

@@ -8,8 +8,8 @@ mod workspace;
 
 use std::path::PathBuf;
 
-use tauri::path::BaseDirectory;
 use tauri::Manager;
+use tauri::path::BaseDirectory;
 
 use catalog::Area;
 use generator::GenerateRequest;
@@ -76,7 +76,12 @@ fn save_agent(workspace: String, lang: Lang, markdown: String) -> Result<AgentSu
 }
 
 #[tauri::command]
-fn install_agent(app: tauri::AppHandle, workspace: String, path: String, overwrite: bool) -> Result<String, String> {
+fn install_agent(
+    app: tauri::AppHandle,
+    workspace: String,
+    path: String,
+    overwrite: bool,
+) -> Result<String, String> {
     let home = app.path().home_dir().map_err(|e| e.to_string())?;
     let target = home.join(".claude").join("agents");
     library::install(&Workspace::open(&workspace)?, &path, &target, overwrite)

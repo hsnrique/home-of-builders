@@ -50,7 +50,12 @@ pub fn save(ws: &Workspace, lang: Lang, markdown: &str) -> Result<AgentSummary, 
     summarize(ws, &path).ok_or_else(|| "error.invalidAgent".into())
 }
 
-pub fn install(ws: &Workspace, path: &str, target_dir: &Path, overwrite: bool) -> Result<String, String> {
+pub fn install(
+    ws: &Workspace,
+    path: &str,
+    target_dir: &Path,
+    overwrite: bool,
+) -> Result<String, String> {
     let agent = find(ws, path)?;
     let target = target_dir.join(format!("{}.md", agent.name));
     if target.exists() && !overwrite {
@@ -74,7 +79,13 @@ fn validated_name(markdown: &str) -> Result<String, String> {
 /// Never overwrite a saved agent: `name`, then `name-2`, `name-3`…
 fn free_slot(dir: &Path, name: &str) -> (PathBuf, String) {
     (1..)
-        .map(|n| if n == 1 { name.to_string() } else { format!("{name}-{n}") })
+        .map(|n| {
+            if n == 1 {
+                name.to_string()
+            } else {
+                format!("{name}-{n}")
+            }
+        })
         .map(|candidate| (dir.join(format!("{candidate}.md")), candidate))
         .find(|(path, _)| !path.exists())
         .expect("an unbounded range always yields a free slot")
@@ -97,9 +108,13 @@ fn summarize(ws: &Workspace, file: &Path) -> Option<AgentSummary> {
 
 // Known limit: depth cap matches the deepest layout we use (agents/generated/<lang>/).
 fn collect_markdown(dir: &Path, depth: usize, out: &mut Vec<PathBuf>) {
-    let Ok(entries) = fs::read_dir(dir) else { return };
+    let Ok(entries) = fs::read_dir(dir) else {
+        return;
+    };
     for entry in entries.flatten() {
-        let (path, Ok(kind)) = (entry.path(), entry.file_type()) else { continue };
+        let (path, Ok(kind)) = (entry.path(), entry.file_type()) else {
+            continue;
+        };
         if kind.is_dir() && depth < 3 {
             collect_markdown(&path, depth + 1, out);
         } else if kind.is_file() && path.extension().is_some_and(|ext| ext == "md") {

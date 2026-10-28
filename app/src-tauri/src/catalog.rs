@@ -31,7 +31,10 @@ pub fn parse_areas(json: &str) -> Result<Vec<Area>, String> {
     let mut ids = std::collections::HashSet::new();
     for area in &areas {
         if !is_valid_name(&area.id) || !ids.insert(area.id.as_str()) {
-            return Err(format!("catalog/areas.json: invalid or duplicate id '{}'", area.id));
+            return Err(format!(
+                "catalog/areas.json: invalid or duplicate id '{}'",
+                area.id
+            ));
         }
     }
     Ok(areas)
@@ -46,7 +49,11 @@ mod tests {
         let areas = parse_areas(include_str!("../../../catalog/areas.json")).unwrap();
         assert!(areas.iter().any(|a| a.kind == AreaKind::Niche));
         assert!(areas.iter().any(|a| a.kind == AreaKind::Channel));
-        assert!(areas.iter().all(|a| !a.label.pt.is_empty() && !a.hint.is_empty()));
+        assert!(
+            areas
+                .iter()
+                .all(|a| !a.label.pt.is_empty() && !a.hint.is_empty())
+        );
     }
 
     #[test]

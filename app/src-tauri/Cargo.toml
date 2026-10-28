@@ -5,7 +5,7 @@ description = "Build elite marketing agents for Claude Code"
 authors = ["Henrique Braga"]
 license = "MIT"
 repository = "https://github.com/hsnrique/home-of-builders"
-edition = "2021"
+edition = "2024"
 
 [lib]
 # The `_lib` suffix keeps the lib name distinct from the bin name (cargo issue #8519 on Windows).
