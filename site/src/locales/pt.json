@@ -1,5 +1,4 @@
-// English lives in the HTML; this swaps text nodes to Portuguese and back. Text only, never HTML.
-const PT = {
+{
   "nav.agents": "Agentes",
   "hero.title": "Agentes de marketing de elite para o Claude Code.",
   "hero.lead": "Parta de um agente base de elite, cruze com o seu nicho e as suas necessidades e receba um agente novo, escrito para aquele trabalho, em português ou inglês. Grátis, open source e roda no seu próprio Claude Code.",
@@ -53,39 +52,5 @@ const PT = {
   "open.sponsor": "Patrocinar o projeto",
   "open.contribute": "Contribuir com um agente",
   "foot.by": "Feito por",
-  "foot.privacy": "Este site não usa cookies e não coleta dados.",
-};
-
-const english = new Map();
-
-function apply(lang) {
-  document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
-  for (const el of document.querySelectorAll("[data-i18n]")) {
-    if (!english.has(el)) english.set(el, el.textContent);
-    el.textContent = lang === "pt" ? (PT[el.dataset.i18n] ?? english.get(el)) : english.get(el);
-  }
-  const toggle = document.querySelector("[data-lang-toggle]");
-  toggle.textContent = lang === "pt" ? "EN" : "PT";
-  toggle.setAttribute("aria-label", lang === "pt" ? "Switch to English" : "Mudar para português");
+  "foot.privacy": "Este site não usa cookies e não coleta dados."
 }
-
-function savedLang() {
-  try {
-    return localStorage.getItem("lang");
-  } catch {
-    return null;
-  }
-}
-
-let current = savedLang() ?? (navigator.language.toLowerCase().startsWith("pt") ? "pt" : "en");
-apply(current);
-
-document.querySelector("[data-lang-toggle]").addEventListener("click", () => {
-  current = current === "pt" ? "en" : "pt";
-  apply(current);
-  try {
-    localStorage.setItem("lang", current);
-  } catch {
-    /* the choice lasts for this visit only */
-  }
-});

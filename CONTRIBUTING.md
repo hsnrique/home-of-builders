@@ -23,6 +23,19 @@ cd src-tauri && cargo test          # backend tests
 
 `cargo test -- --ignored generates_a_real_agent` runs one real generation through your Claude Code login. Use it when you change the prompt.
 
+## Website
+
+The landing page in `site/` is a small Vite project. Vercel builds it from `vercel.json`.
+
+```bash
+cd site
+npm ci
+npm run dev       # http://127.0.0.1:4173
+npm test          # every translatable string has a Portuguese version
+```
+
+English copy lives in `site/index.html`; Portuguese lives in `site/src/locales/pt.json` under the same `data-i18n` key.
+
 ## Add or improve a base agent
 
 1. Read [STANDARD.md](STANDARD.md). Every agent keeps the same ten sections in the same order.

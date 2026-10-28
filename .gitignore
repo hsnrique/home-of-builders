@@ -14,6 +14,7 @@
 node_modules/
 .vite/
 app/dist/
+site/dist/
 app/preview.html
 app/src-tauri/target/
 app/src-tauri/gen/

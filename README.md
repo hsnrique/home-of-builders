@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="site/favicon.svg" width="72" height="72" alt="Home of Builders">
+  <img src="site/public/favicon.svg" width="72" height="72" alt="Home of Builders">
 </p>
 
 <h1 align="center">Home of Builders</h1>
@@ -78,7 +78,7 @@ agents/generated/en|pt/   agents you create, by language
 catalog/areas.json        niches and channels you can cross with
 STANDARD.md               the format every agent follows
 app/                      desktop app (Tauri 2, TypeScript, Rust)
-site/                     homeofbuilders.com
+site/                     homeofbuilders.com (Vite)
 ```
 
 Add an area by editing `catalog/areas.json`. Add a base agent by dropping a file in `agents/core/` that follows [STANDARD.md](STANDARD.md). The app picks both up on the next launch.
