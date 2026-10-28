@@ -1,0 +1,91 @@
+// English lives in the HTML; this swaps text nodes to Portuguese and back. Text only, never HTML.
+const PT = {
+  "nav.agents": "Agentes",
+  "hero.title": "Agentes de marketing de elite para o Claude Code.",
+  "hero.lead": "Parta de um agente base de elite, cruze com o seu nicho e as suas necessidades e receba um agente novo, escrito para aquele trabalho, em português ou inglês. Grátis, open source e roda no seu próprio Claude Code.",
+  "hero.download": "Baixar o app",
+  "hero.source": "Ver o código",
+  "hero.fine": "macOS, Windows e Linux. Precisa do Claude Code instalado e logado.",
+  "demo.title": "O app",
+  "demo.base": "Agente base",
+  "demo.area": "Área de interesse",
+  "demo.areaValue": "Clínicas e saúde",
+  "demo.needs": "Necessidades específicas",
+  "demo.needsValue": "Clínica de implante dentário em Curitiba, R$5 mil/mês, leads vão pro WhatsApp, 2 closers",
+  "demo.language": "Idioma do agente",
+  "demo.caption": "Resultado real, gerado em 74 segundos a partir dessas escolhas.",
+  "demo.file": "Ler o arquivo completo",
+  "steps.title": "Como funciona",
+  "steps.one": "Escolha um agente base.",
+  "steps.oneText": "São dezoito no app, cada um com perguntas de briefing, playbooks, benchmarks, checklist de qualidade e limites.",
+  "steps.two": "Cruze com uma área e com as suas necessidades.",
+  "steps.twoText": "Escolha entre 28 nichos e canais, descreva a sua situação e o idioma. O Claude Code reescreve o agente inteiro para aquele contexto.",
+  "steps.three": "Revise, salve, instale.",
+  "steps.threeText": "O arquivo vai para a pasta da sua biblioteca em Markdown. Um clique copia para o Claude Code.",
+  "agents.title": "Os 18 agentes base",
+  "agents.paid": "Mídia paga e crescimento",
+  "agents.copy": "Copy e conteúdo",
+  "agents.social": "Social e busca",
+  "agents.research": "Pesquisa e análise",
+  "agents.sales": "Vendas e negociação",
+  "a.traffic": "Plano de mídia, estrutura de campanha, teste de criativo e diagnóstico de custo em Meta, Google, TikTok e LinkedIn.",
+  "a.lpo": "Pesquisa de conversão, estrutura de página, confiança no checkout e testes A/B do tamanho do seu tráfego.",
+  "a.launch": "Calendário de lançamento, pilha de oferta e meta de leads calculada a partir do faturamento.",
+  "a.copy": "Copy de resposta direta na sua voz, a partir de um perfil de voz das suas amostras.",
+  "a.headline": "Headlines, ganchos e assuntos de e-mail em volume, pontuados e no limite de cada canal.",
+  "a.email": "Newsletter semanal, sequências, automações e entregabilidade.",
+  "a.video": "Roteiros de Reels, TikTok, anúncios UGC, YouTube e VSL com lista de cenas.",
+  "a.social": "Pilares de conteúdo, calendário do mês, legendas e respostas à comunidade.",
+  "a.linkedin": "Posts de LinkedIn na sua voz, prontos para publicar.",
+  "a.x": "Um tema transformado em thread para o X.",
+  "a.seo": "Pesquisa de palavras-chave, briefings de conteúdo, correções técnicas e presença nas respostas de IA.",
+  "a.competitor": "Bibliotecas de anúncios, ofertas, reclamações e brechas de posicionamento num battlecard.",
+  "a.research": "Pesquisa com fonte e nível de confiança, roteiro de entrevista e tamanho de mercado.",
+  "a.analyst": "Lê as suas exportações e entrega o relatório no seu formato.",
+  "a.brand": "Posicionamento, mensagens e guia de voz com exemplos reais.",
+  "a.sdr": "Qualifica leads, escreve sequências de prospecção e marca reuniões.",
+  "a.sales": "Acompanha o lead até o fechamento, respondendo com o seu próprio FAQ.",
+  "a.negotiation": "Prepara e conduz negociações: one-sheet, perguntas calibradas e plano de ofertas com números exatos.",
+  "books.title": "Feito em cima dos livros",
+  "books.text": "Os playbooks aplicam os frameworks dos livros de referência de cada área e dizem de onde vêm: Breakthrough Advertising, Influence, Tested Advertising Methods, Never Split the Difference, Getting to Yes, Positioning, Obviously Awesome, How Brands Grow, StoryBrand, The Mom Test, Contagious, Hook Point, Don't Make Me Think, Predictable Revenue, Lean Analytics e Everybody Writes.",
+  "open.title": "Open source",
+  "open.text": "Licença MIT. Cada agente é um arquivo Markdown que você lê, edita e devolve como pull request. Se o projeto te poupa tempo, patrocinar mantém agentes novos chegando.",
+  "open.sponsor": "Patrocinar o projeto",
+  "open.contribute": "Contribuir com um agente",
+  "foot.by": "Feito por",
+  "foot.privacy": "Este site não usa cookies e não coleta dados.",
+};
+
+const english = new Map();
+
+function apply(lang) {
+  document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
+  for (const el of document.querySelectorAll("[data-i18n]")) {
+    if (!english.has(el)) english.set(el, el.textContent);
+    el.textContent = lang === "pt" ? (PT[el.dataset.i18n] ?? english.get(el)) : english.get(el);
+  }
+  const toggle = document.querySelector("[data-lang-toggle]");
+  toggle.textContent = lang === "pt" ? "EN" : "PT";
+  toggle.setAttribute("aria-label", lang === "pt" ? "Switch to English" : "Mudar para português");
+}
+
+function savedLang() {
+  try {
+    return localStorage.getItem("lang");
+  } catch {
+    return null;
+  }
+}
+
+let current = savedLang() ?? (navigator.language.toLowerCase().startsWith("pt") ? "pt" : "en");
+apply(current);
+
+document.querySelector("[data-lang-toggle]").addEventListener("click", () => {
+  current = current === "pt" ? "en" : "pt";
+  apply(current);
+  try {
+    localStorage.setItem("lang", current);
+  } catch {
+    /* the choice lasts for this visit only */
+  }
+});

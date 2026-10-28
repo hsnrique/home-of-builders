@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home of Builders · Elite marketing agents for Claude Code</title>
+    <meta name="description" content="Free, open-source desktop app with 18 elite marketing agents for Claude Code. Cross a base agent with your niche and needs to build a new one, in English or Portuguese." />
+    <meta property="og:title" content="Home of Builders" />
+    <meta property="og:description" content="Elite marketing agents for Claude Code. Free and open source." />
+    <meta property="og:url" content="https://homeofbuilders.com" />
+    <link rel="canonical" href="https://homeofbuilders.com" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/main.js" defer></script>
+  </head>
+  <body>
+    <header class="top wrap">
+      <a class="wordmark" href="/">Home of Builders</a>
+      <nav class="top-nav">
+        <a href="#agents" data-i18n="nav.agents">Agents</a>
+        <a href="https://github.com/hsnrique/home-of-builders">GitHub</a>
+        <button class="lang" type="button" data-lang-toggle aria-label="Mudar para português">PT</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero wrap">
+        <h1 data-i18n="hero.title">Elite marketing agents for Claude Code.</h1>
+        <p class="lead" data-i18n="hero.lead">Start from an elite base agent, cross it with your niche and your needs, and get a new agent written for that exact job, in English or Portuguese. Free, open source, and it runs on your own Claude Code.</p>
+        <div class="cta">
+          <a class="button" href="https://github.com/hsnrique/home-of-builders/releases/latest" data-i18n="hero.download">Download the app</a>
+          <a class="link" href="https://github.com/hsnrique/home-of-builders" data-i18n="hero.source">Read the source</a>
+        </div>
+        <p class="fine" data-i18n="hero.fine">macOS, Windows and Linux. Needs Claude Code installed and logged in.</p>
+      </section>
+
+      <section class="demo wrap" aria-labelledby="demo-title">
+        <h2 id="demo-title" class="visually-hidden" data-i18n="demo.title">The app</h2>
+        <div class="window">
+          <div class="window-bar"><span></span><span></span><span></span><em>Home of Builders</em></div>
+          <div class="window-body">
+            <div class="form">
+              <p class="label" data-i18n="demo.base">Base agent</p>
+              <p class="control mono">traffic-manager</p>
+              <p class="label" data-i18n="demo.area">Area of interest</p>
+              <p class="control" data-i18n="demo.areaValue">Clinics &amp; healthcare</p>
+              <p class="label" data-i18n="demo.needs">Specific needs</p>
+              <p class="control tall" data-i18n="demo.needsValue">Dental implant clinic in Curitiba, R$5k/month, leads go to WhatsApp, 2 closers</p>
+              <p class="label" data-i18n="demo.language">Agent language</p>
+              <p class="segments"><span>English</span><span class="on">Português (BR)</span></p>
+              <p class="recipe"><span class="mono">traffic-manager</span> × <span data-i18n="demo.areaValue">Clinics &amp; healthcare</span> → Português (BR)</p>
+            </div>
+            <pre class="output">---
+name: gestor-trafego-implante-odontologico
+description: Gestor de tráfego sênior para clínicas odontológicas que vendem implantes, com verba enxuta (~R$5k/mês) em Meta Ads e Google Ads, funil via WhatsApp e conformidade com CFO/CRO e LGPD.
+tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
+model: inherit
+---
+
+# Gestor de Tráfego de Implante Odontológico
+
+Você é um gestor de tráfego sênior que já operou contas de clínicas odontológicas e de saúde, quase sempre com o WhatsApp como porta de entrada e a recepção como gargalo escondido. Pensa como sócio da clínica…</pre>
+          </div>
+        </div>
+        <p class="caption">
+          <span data-i18n="demo.caption">Real output, generated in 74 seconds from these inputs.</span>
+          <a href="https://github.com/hsnrique/home-of-builders/blob/main/agents/generated/pt/gestor-trafego-implante-odontologico.md" data-i18n="demo.file">Read the full file</a>
+        </p>
+      </section>
+
+      <section class="steps wrap" aria-labelledby="steps-title">
+        <h2 id="steps-title" data-i18n="steps.title">How it works</h2>
+        <ol>
+          <li>
+            <strong data-i18n="steps.one">Pick a base agent.</strong>
+            <span data-i18n="steps.oneText">Eighteen ship with the app, each with intake questions, playbooks, benchmarks, a quality checklist and guardrails.</span>
+          </li>
+          <li>
+            <strong data-i18n="steps.two">Cross it with an area and your needs.</strong>
+            <span data-i18n="steps.twoText">Choose from 28 niches and channels, describe your situation, pick English or Portuguese. Claude Code rewrites the whole agent for that context.</span>
+          </li>
+          <li>
+            <strong data-i18n="steps.three">Review, save, install.</strong>
+            <span data-i18n="steps.threeText">The file lands in your library folder as plain Markdown. One click copies it into Claude Code.</span>
+          </li>
+        </ol>
+      </section>
+
+      <section id="agents" class="agents wrap" aria-labelledby="agents-title">
+        <h2 id="agents-title" data-i18n="agents.title">The 18 base agents</h2>
+        <div class="agent-groups">
+          <div>
+            <h3 data-i18n="agents.paid">Paid media and growth</h3>
+            <dl>
+              <dt class="mono">traffic-manager</dt><dd data-i18n="a.traffic">Media plans, campaign structure, creative tests and cost diagnosis on Meta, Google, TikTok and LinkedIn.</dd>
+              <dt class="mono">landing-page-optimizer</dt><dd data-i18n="a.lpo">Conversion research, page structure, checkout trust and A/B tests sized to your traffic.</dd>
+              <dt class="mono">launch-strategist</dt><dd data-i18n="a.launch">Launch calendars, offer stacks and lead goals worked back from the revenue target.</dd>
+            </dl>
+          </div>
+          <div>
+            <h3 data-i18n="agents.copy">Copy and content</h3>
+            <dl>
+              <dt class="mono">copywriter</dt><dd data-i18n="a.copy">Direct-response copy in your own voice, built from a voice profile of your samples.</dd>
+              <dt class="mono">headline-writer</dt><dd data-i18n="a.headline">Headlines, hooks and subject lines in volume, scored and fitted to each channel's limits.</dd>
+              <dt class="mono">email-marketer</dt><dd data-i18n="a.email">Weekly newsletters, sequences, automations and deliverability.</dd>
+              <dt class="mono">video-scriptwriter</dt><dd data-i18n="a.video">Reels, TikTok, UGC ads, YouTube and VSL scripts with shot lists.</dd>
+            </dl>
+          </div>
+          <div>
+            <h3 data-i18n="agents.social">Social and search</h3>
+            <dl>
+              <dt class="mono">social-media-manager</dt><dd data-i18n="a.social">Content pillars, a monthly calendar, captions and community replies.</dd>
+              <dt class="mono">linkedin-ghostwriter</dt><dd data-i18n="a.linkedin">LinkedIn posts in your voice, ready to publish.</dd>
+              <dt class="mono">x-thread-writer</dt><dd data-i18n="a.x">A topic turned into a thread for X.</dd>
+              <dt class="mono">seo-strategist</dt><dd data-i18n="a.seo">Keyword research, content briefs, technical fixes and visibility in AI answers.</dd>
+            </dl>
+          </div>
+          <div>
+            <h3 data-i18n="agents.research">Research and analysis</h3>
+            <dl>
+              <dt class="mono">competitor-analyst</dt><dd data-i18n="a.competitor">Ad libraries, offers, reviews and positioning gaps turned into a battlecard.</dd>
+              <dt class="mono">market-researcher</dt><dd data-i18n="a.research">Sourced research with confidence levels, interview guides and market sizing.</dd>
+              <dt class="mono">marketing-analyst</dt><dd data-i18n="a.analyst">Reads your exports and delivers the report in your format.</dd>
+              <dt class="mono">brand-strategist</dt><dd data-i18n="a.brand">Positioning, messaging and a voice guide with real examples.</dd>
+            </dl>
+          </div>
+          <div>
+            <h3 data-i18n="agents.sales">Sales and negotiation</h3>
+            <dl>
+              <dt class="mono">sdr</dt><dd data-i18n="a.sdr">Qualifies leads, writes outbound sequences and books meetings.</dd>
+              <dt class="mono">sales-assistant</dt><dd data-i18n="a.sales">Follows a lead to the close, answering from your own FAQ.</dd>
+              <dt class="mono">negotiation-specialist</dt><dd data-i18n="a.negotiation">Prepares and runs negotiations: one-sheet, calibrated questions and an offer plan with exact numbers.</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="books wrap" aria-labelledby="books-title">
+        <h2 id="books-title" data-i18n="books.title">Built on the books</h2>
+        <p data-i18n="books.text">The playbooks apply the frameworks of the field's reference books and name them: Breakthrough Advertising, Influence, Tested Advertising Methods, Never Split the Difference, Getting to Yes, Positioning, Obviously Awesome, How Brands Grow, StoryBrand, The Mom Test, Contagious, Hook Point, Don't Make Me Think, Predictable Revenue, Lean Analytics and Everybody Writes.</p>
+      </section>
+
+      <section class="open wrap" aria-labelledby="open-title">
+        <h2 id="open-title" data-i18n="open.title">Open source</h2>
+        <p data-i18n="open.text">MIT licensed. Every agent is a Markdown file you can read, edit and send back as a pull request. If the project saves you time, sponsoring it keeps new agents coming.</p>
+        <div class="cta">
+          <a class="button" href="https://github.com/sponsors/hsnrique" data-i18n="open.sponsor">Sponsor the project</a>
+          <a class="link" href="https://github.com/hsnrique/home-of-builders/blob/main/CONTRIBUTING.md" data-i18n="open.contribute">Contribute an agent</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot wrap">
+      <p><span data-i18n="foot.by">Made by</span> <a href="https://hsnrique.com">Henrique Martins</a>.</p>
+      <p data-i18n="foot.privacy">This site sets no cookies and collects no data.</p>
+    </footer>
+  </body>
+</html>
