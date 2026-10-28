@@ -54,7 +54,7 @@ jobs:
           projectPath: app
           tagName: ${{ github.ref_name }}
           releaseName: Home of Builders ${{ github.ref_name }}
-          releaseBody: "See CHANGELOG.md for what changed. macOS builds are not notarized yet: the first time, right-click the app and choose Open."
+          releaseBody: "See CHANGELOG.md for what changed. macOS builds are not notarized yet: the first time, open the app, then go to System Settings → Privacy & Security and click Open Anyway."
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
