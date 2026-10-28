@@ -52,8 +52,12 @@ pub fn rename(markdown: &str, new_name: &str) -> String {
 }
 
 fn block(markdown: &str) -> Option<&str> {
-    let rest = markdown.trim_start_matches('\u{feff}').strip_prefix("---")?;
-    let rest = rest.strip_prefix("\r\n").or_else(|| rest.strip_prefix('\n'))?;
+    let rest = markdown
+        .trim_start_matches('\u{feff}')
+        .strip_prefix("---")?;
+    let rest = rest
+        .strip_prefix("\r\n")
+        .or_else(|| rest.strip_prefix('\n'))?;
     let end = rest.find("\n---")?;
     Some(&rest[..end])
 }
@@ -85,7 +89,10 @@ fn folded<'a>(lines: &mut impl Iterator<Item = &'a str>) -> String {
 
 fn unquote(value: &str) -> &str {
     for quote in ['"', '\''] {
-        if let Some(inner) = value.strip_prefix(quote).and_then(|v| v.strip_suffix(quote)) {
+        if let Some(inner) = value
+            .strip_prefix(quote)
+            .and_then(|v| v.strip_suffix(quote))
+        {
             return inner;
         }
     }
@@ -118,7 +125,8 @@ mod tests {
 
     #[test]
     fn parses_quoted_and_folded_values() {
-        let md = "---\nname: 'seo'\ndescription: >\n  Ranks pages\n  on Google.\nmodel: inherit\n---\n";
+        let md =
+            "---\nname: 'seo'\ndescription: >\n  Ranks pages\n  on Google.\nmodel: inherit\n---\n";
         let meta = parse(md).unwrap();
         assert_eq!(meta.name, "seo");
         assert_eq!(meta.description, "Ranks pages on Google.");
@@ -134,7 +142,16 @@ mod tests {
     #[test]
     fn validates_names() {
         assert!(is_valid_name("meta-ads-clinic-2"));
-        for bad in ["", "-a", "a-", "Upper", "naïve", "../x", "a/b", &"a".repeat(65)] {
+        for bad in [
+            "",
+            "-a",
+            "a-",
+            "Upper",
+            "naïve",
+            "../x",
+            "a/b",
+            &"a".repeat(65),
+        ] {
             assert!(!is_valid_name(bad), "{bad} should be invalid");
         }
     }

@@ -20,7 +20,9 @@ impl Lang {
     fn instruction(self) -> &'static str {
         match self {
             Lang::En => "Write the entire agent in English.",
-            Lang::Pt => "Write the description, headings and the entire body in Brazilian Portuguese (pt-BR), natural and idiomatic for Brazilian marketers. Keep the frontmatter keys (name, description, tools, model) and tool names in English. Keep `name` in kebab-case ASCII without accents. Keep metric acronyms and platform names as Brazilian marketers use them (CPA, ROAS, CTR, Meta Ads).",
+            Lang::Pt => {
+                "Write the description, headings and the entire body in Brazilian Portuguese (pt-BR), natural and idiomatic for Brazilian marketers. Keep the frontmatter keys (name, description, tools, model) and tool names in English. Keep `name` in kebab-case ASCII without accents. Keep metric acronyms and platform names as Brazilian marketers use them (CPA, ROAS, CTR, Meta Ads)."
+            }
         }
     }
 }
@@ -86,7 +88,10 @@ mod tests {
         Area {
             id: "healthcare".into(),
             kind: AreaKind::Niche,
-            label: Label { en: "Clinics".into(), pt: "Clinics (pt)".into() },
+            label: Label {
+                en: "Clinics".into(),
+                pt: "Clinics (pt)".into(),
+            },
             hint: "Council rules apply.".into(),
         }
     }
@@ -101,17 +106,36 @@ mod tests {
             needs: "Botox leads in Curitiba",
             lang: Lang::Pt,
         });
-        for expected in ["STD", "BASE", "Area (niche): Clinics — Council rules apply.", "Botox leads in Curitiba", "pt-BR", "Task:"] {
+        for expected in [
+            "STD",
+            "BASE",
+            "Area (niche): Clinics — Council rules apply.",
+            "Botox leads in Curitiba",
+            "pt-BR",
+            "Task:",
+        ] {
             assert!(prompt.contains(expected), "missing {expected}");
         }
     }
 
     #[test]
     fn prompt_explains_missing_area_or_needs() {
-        let no_area = build(&Brief { standard: "", base_agent: "", area: None, needs: "x", lang: Lang::En });
+        let no_area = build(&Brief {
+            standard: "",
+            base_agent: "",
+            area: None,
+            needs: "x",
+            lang: Lang::En,
+        });
         assert!(no_area.contains("Area: none selected"));
         let area = clinic();
-        let no_needs = build(&Brief { standard: "", base_agent: "", area: Some(&area), needs: "  ", lang: Lang::En });
+        let no_needs = build(&Brief {
+            standard: "",
+            base_agent: "",
+            area: Some(&area),
+            needs: "  ",
+            lang: Lang::En,
+        });
         assert!(no_needs.contains("none given"));
         assert!(no_needs.contains("entire agent in English"));
     }

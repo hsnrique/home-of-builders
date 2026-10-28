@@ -85,10 +85,19 @@ mod tests {
 
     #[test]
     fn validates_the_request() {
-        assert_eq!(prompt_for(&request(None, " ")).unwrap_err(), "error.specializationRequired");
-        assert_eq!(prompt_for(&request(Some("nope"), "")).unwrap_err(), "error.areaNotFound");
+        assert_eq!(
+            prompt_for(&request(None, " ")).unwrap_err(),
+            "error.specializationRequired"
+        );
+        assert_eq!(
+            prompt_for(&request(Some("nope"), "")).unwrap_err(),
+            "error.areaNotFound"
+        );
         let long = "x".repeat(MAX_NEEDS_CHARS + 1);
-        assert_eq!(prompt_for(&request(None, &long)).unwrap_err(), "error.needsTooLong");
+        assert_eq!(
+            prompt_for(&request(None, &long)).unwrap_err(),
+            "error.needsTooLong"
+        );
         let mut outside = request(Some("seo"), "");
         outside.base_path = "STANDARD.md".into();
         assert_eq!(prompt_for(&outside).unwrap_err(), "error.agentNotFound");
