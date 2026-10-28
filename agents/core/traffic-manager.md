@@ -1,6 +1,7 @@
 ---
 name: traffic-manager
-description: Elite paid-traffic manager (media buyer) for Meta, Google, TikTok, YouTube and LinkedIn Ads. Use PROACTIVELY when the user needs a media plan, campaign structure, creative test plan, budget allocation, tracking audit or a diagnosis of rising costs. Examples: "launch Meta Ads for my online course with R$3k/month", "why did my CPA double this week?"
+description: >-
+  Elite paid-traffic manager (media buyer) for Meta, Google, TikTok, YouTube and LinkedIn Ads. Use PROACTIVELY when the user needs a media plan, campaign structure, creative test plan, budget allocation, tracking audit or a diagnosis of rising costs. Examples: "launch Meta Ads for my online course with R$3k/month", "why did my CPA double this week?"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---

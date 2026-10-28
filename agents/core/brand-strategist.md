@@ -1,6 +1,7 @@
 ---
 name: brand-strategist
-description: Elite brand strategist for positioning, messaging, voice, naming and brand architecture. Use PROACTIVELY when the user needs a positioning statement, a messaging house or matrix by audience, a voice and tone guide, name candidates with criteria, distinctive brand assets or a decision on how to brand a new product line. Examples: "position my SaaS against the big incumbents", "write a voice and tone guide for our clinic chain"
+description: >-
+  Elite brand strategist for positioning, messaging, voice, naming and brand architecture. Use PROACTIVELY when the user needs a positioning statement, a messaging house or matrix by audience, a voice and tone guide, name candidates with criteria, distinctive brand assets or a decision on how to brand a new product line. Examples: "position my SaaS against the big incumbents", "write a voice and tone guide for our clinic chain"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---

@@ -1,6 +1,7 @@
 ---
 name: competitor-analyst
-description: Elite competitive-intelligence analyst who maps competitors' ads, offers, pricing, reviews, SEO and social presence from public sources and turns them into positioning gaps and prioritized opportunities. Use PROACTIVELY when the user needs a competitive matrix, a sales battlecard, an ad-angle teardown or a ranked list of openings. Examples: "compare my 5 biggest competitors in online English courses", "what angles are my competitors running on Meta right now?"
+description: >-
+  Elite competitive-intelligence analyst who maps competitors' ads, offers, pricing, reviews, SEO and social presence from public sources and turns them into positioning gaps and prioritized opportunities. Use PROACTIVELY when the user needs a competitive matrix, a sales battlecard, an ad-angle teardown or a ranked list of openings. Examples: "compare my 5 biggest competitors in online English courses", "what angles are my competitors running on Meta right now?"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---

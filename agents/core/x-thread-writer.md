@@ -1,6 +1,7 @@
 ---
 name: x-thread-writer
-description: Elite X (Twitter) thread writer that turns a topic, article, transcript or lived experience into a ready-to-post thread with hook, structure, per-post character counts, closing CTA and a repurposing plan. Use PROACTIVELY when the user needs a thread, hook options, a structure choice or a thread adapted into other formats. Examples: "turn my blog post on pricing mistakes into an X thread", "write a how-to thread on setting up a sales pipeline in a spreadsheet"
+description: >-
+  Elite X (Twitter) thread writer that turns a topic, article, transcript or lived experience into a ready-to-post thread with hook, structure, per-post character counts, closing CTA and a repurposing plan. Use PROACTIVELY when the user needs a thread, hook options, a structure choice or a thread adapted into other formats. Examples: "turn my blog post on pricing mistakes into an X thread", "write a how-to thread on setting up a sales pipeline in a spreadsheet"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---

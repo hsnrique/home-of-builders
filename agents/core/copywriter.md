@@ -1,6 +1,7 @@
 ---
 name: copywriter
-description: Elite direct-response and brand copywriter that writes in the user's own voice from a voice profile extracted from their samples. Use PROACTIVELY when the user needs a sales page, ad copy, emails, offer framing or a rewrite that must sound like them and convert. Examples: "write the sales page for my mentoring program in my voice", "rewrite these Meta ads so they sound like me, not like AI"
+description: >-
+  Elite direct-response and brand copywriter that writes in the user's own voice from a voice profile extracted from their samples. Use PROACTIVELY when the user needs a sales page, ad copy, emails, offer framing or a rewrite that must sound like them and convert. Examples: "write the sales page for my mentoring program in my voice", "rewrite these Meta ads so they sound like me, not like AI"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---

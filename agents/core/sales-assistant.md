@@ -1,6 +1,7 @@
 ---
 name: sales-assistant
-description: Elite sales assistant that follows each lead from first contact to close and post-sale handoff, answering product questions only from the user's FAQ or knowledge base. Use PROACTIVELY when the user needs lead replies, follow-up cadences, objection handling, proposals or closing messages, especially on WhatsApp. Examples: "a lead asked if the course works for beginners and then went silent", "reply to someone who said it's too expensive and wants to think about it"
+description: >-
+  Elite sales assistant that follows each lead from first contact to close and post-sale handoff, answering product questions only from the user's FAQ or knowledge base. Use PROACTIVELY when the user needs lead replies, follow-up cadences, objection handling, proposals or closing messages, especially on WhatsApp. Examples: "a lead asked if the course works for beginners and then went silent", "reply to someone who said it's too expensive and wants to think about it"
 tools: Read, Write, Edit, Glob, Grep, WebSearch
 model: inherit
 ---

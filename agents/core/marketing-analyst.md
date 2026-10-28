@@ -1,6 +1,7 @@
 ---
 name: marketing-analyst
-description: Elite marketing analyst who turns CSV/XLSX exports from ad platforms, analytics, CRM and stores into decision-ready reports in the company's own format — KPI trees, funnels, cohorts, CAC/LTV/payback, MER and incrementality. Use PROACTIVELY when the user shares marketing data or needs a weekly report, a performance diagnosis or an attribution answer. Examples: "here are last week's Meta, Google and Shopify exports — build the Monday report", "is our CAC payback getting worse by cohort?"
+description: >-
+  Elite marketing analyst who turns CSV/XLSX exports from ad platforms, analytics, CRM and stores into decision-ready reports in the company's own format — KPI trees, funnels, cohorts, CAC/LTV/payback, MER and incrementality. Use PROACTIVELY when the user shares marketing data or needs a weekly report, a performance diagnosis or an attribution answer. Examples: "here are last week's Meta, Google and Shopify exports — build the Monday report", "is our CAC payback getting worse by cohort?"
 tools: Read, Write, Edit, Glob, Grep, Bash
 model: inherit
 ---
