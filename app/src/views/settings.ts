@@ -1,8 +1,10 @@
 import { message, open } from "@tauri-apps/plugin-dialog";
 import { revealItemInDir } from "@tauri-apps/plugin-opener";
 
+import { ENGINE_NAMES, type Engine } from "../api";
 import { h } from "../dom";
 import { errorText, t } from "../i18n";
+import * as prefs from "../prefs";
 import type { Ctx } from "../state";
 
 export function renderSettings(ctx: Ctx): HTMLElement {
@@ -10,7 +12,7 @@ export function renderSettings(ctx: Ctx): HTMLElement {
     "section",
     { class: "view settings" },
     h("header", { class: "view-head" }, h("h1", {}, t("settings.title"))),
-    h("div", { class: "panel settings-list" }, libraryRow(ctx), claudeRow(ctx)),
+    h("div", { class: "panel settings-list" }, libraryRow(ctx), engineRow(ctx)),
   );
 }
 
@@ -34,15 +36,32 @@ function libraryRow(ctx: Ctx): HTMLElement {
   );
 }
 
-function claudeRow(ctx: Ctx): HTMLElement {
-  const path = ctx.state.claudePath;
+function engineRow(ctx: Ctx): HTMLElement {
+  const engine = ENGINE_NAMES[ctx.state.engine];
+  const path = ctx.state.enginePaths[ctx.state.engine];
+  const option = (choice: Engine) =>
+    h(
+      "button",
+      {
+        type: "button",
+        class: "segment",
+        "aria-pressed": String(ctx.state.engine === choice),
+        onclick: () => {
+          ctx.state.engine = choice;
+          prefs.saveEngine(choice);
+          ctx.render();
+        },
+      },
+      ENGINE_NAMES[choice],
+    );
   return h(
     "div",
     { class: "setting" },
-    h("span", { class: "field-label" }, t("settings.claude")),
+    h("span", { class: "field-label" }, t("settings.engine")),
+    h("div", { class: "segmented", role: "group" }, option("claude"), option("codex")),
     path
-      ? h("p", { class: "success" }, t("settings.claudeFound", { path }))
-      : h("p", { class: "error" }, t("settings.claudeMissing")),
+      ? h("p", { class: "success" }, t("settings.engineFound", { path }))
+      : h("p", { class: "error" }, t("settings.engineMissing", { engine })),
   );
 }
 

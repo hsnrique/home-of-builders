@@ -4,11 +4,11 @@ import { api, ENGINE_NAMES, type AgentSummary, type Engine } from "./api";
 import { h } from "./dom";
 import { errorText, t } from "./i18n";
 
-/** One install button per engine, for wherever an agent can be installed. */
-export function installButtons(workspace: string, agent: AgentSummary): HTMLElement[] {
-  return (["claude", "codex"] as const).map((engine) =>
-    h("button", { class: "btn", onclick: () => installAgent(workspace, agent, engine) }, t("action.install", { engine: ENGINE_NAMES[engine] })),
-  );
+/** "Install in [Claude Code] [Codex]", for wherever an agent can be installed. */
+export function installRow(workspace: string, agent: AgentSummary): HTMLElement {
+  const button = (engine: Engine) =>
+    h("button", { class: "btn", onclick: () => installAgent(workspace, agent, engine) }, ENGINE_NAMES[engine]);
+  return h("div", { class: "actions install" }, h("span", { class: "muted small" }, t("install.label")), button("claude"), button("codex"));
 }
 
 /** Writes the agent where the engine reads user agents, asking before replacing an installed one. */

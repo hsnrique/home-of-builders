@@ -132,6 +132,7 @@ async function generate(ctx: Ctx): Promise<void> {
       areaId: create.areaId || null,
       needs: create.needs,
       lang: create.lang,
+      engine: ctx.state.engine,
     });
     Object.assign(create, { status: "review", draft, draftLang: create.lang });
   } catch (error) {

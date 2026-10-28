@@ -1,5 +1,5 @@
 mod catalog;
-mod claude;
+mod cli;
 mod codex_agent;
 mod engine;
 mod frontmatter;
@@ -10,6 +10,7 @@ mod workspace;
 
 use std::path::PathBuf;
 
+use serde::Serialize;
 use tauri::Manager;
 use tauri::path::BaseDirectory;
 
@@ -46,9 +47,20 @@ fn default_library(app: &tauri::AppHandle) -> Result<PathBuf, String> {
     Ok(documents.join("Home of Builders"))
 }
 
+#[derive(Serialize)]
+struct EnginePaths {
+    claude: Option<String>,
+    codex: Option<String>,
+}
+
+/// Where each engine's CLI was found, or None when it is not installed.
 #[tauri::command]
-fn claude_status() -> Option<String> {
-    claude::locate().map(|path| path.display().to_string())
+fn engine_paths() -> EnginePaths {
+    let path = |engine: Engine| engine.locate().map(|p| p.display().to_string());
+    EnginePaths {
+        claude: path(Engine::Claude),
+        codex: path(Engine::Codex),
+    }
 }
 
 #[tauri::command]
@@ -103,7 +115,7 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
             open_library,
-            claude_status,
+            engine_paths,
             list_agents,
             read_agent,
             list_areas,

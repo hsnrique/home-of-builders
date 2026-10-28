@@ -5,7 +5,7 @@
 <h1 align="center">Home of Builders</h1>
 
 <p align="center">
-  Agentes de marketing de elite para o Claude Code, e um app de desktop que cria agentes novos para o seu nicho.
+  Agentes de marketing de elite para o Claude Code e o Codex, e um app de desktop que cria agentes novos para o seu nicho.
 </p>
 
 <p align="center">
@@ -17,7 +17,7 @@
 
 ---
 
-Escolha um dos 18 agentes base, cruze com uma área (28 nichos e canais) e com as suas necessidades, escolha português ou inglês, e o app pede para o seu Claude Code reescrever o agente inteiro para aquele contexto. Você revisa o rascunho, salva na sua biblioteca e instala no Claude Code com um clique.
+Escolha um dos 18 agentes base, cruze com uma área (28 nichos e canais) e com as suas necessidades, escolha português ou inglês, e o app pede para o seu Claude Code ou Codex reescrever o agente inteiro para aquele contexto. Você revisa o rascunho, salva na sua biblioteca e instala no Claude Code com um clique.
 
 **Exemplo real:** [`gestor-trafego-implante-odontologico.md`](agents/generated/pt/gestor-trafego-implante-odontologico.md) saiu de `traffic-manager` × *Clínicas e saúde* × "clínica de implante dentário em Curitiba, R$5 mil/mês, leads vão pro WhatsApp", em português, em 74 segundos.
 
@@ -52,17 +52,17 @@ Os playbooks aplicam os frameworks dos livros de referência de cada área e diz
 
 ## Instalação
 
-1. Instale o [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) e rode `claude` uma vez para fazer login.
+1. Instale o [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) ou o [Codex](https://github.com/openai/codex) e faça login uma vez.
 2. Pegue o app:
    - **macOS:** baixe o `.dmg` em [Releases](https://github.com/hsnrique/home-of-builders/releases/latest). Os builds ainda não são notarizados: na primeira vez, abra o app, vá em **Ajustes do Sistema → Privacidade e Segurança** e clique em **Abrir Mesmo Assim**.
    - **Windows e Linux:** [rode a partir do código](#rodar-a-partir-do-código).
 3. Abra. A biblioteca é criada em `Documentos/Home of Builders` com todos os agentes base.
 
-Só quer os agentes? Copie qualquer arquivo de [`agents/`](agents) para `~/.claude/agents/` e o Claude Code passa a usar.
+Só quer os agentes? Copie qualquer arquivo de [`agents/`](agents) para `~/.claude/agents/` e o Claude Code passa a usar. O Codex lê agentes em TOML: use **Instalar no → Codex** no app.
 
 ## Como a geração funciona
 
-- O app roda `claude -p --safe-mode --tools ""` na sua máquina, com o seu login do Claude Code: sem chave de API e sem custo além do seu plano.
+- O app roda `claude -p --safe-mode --tools ""` ou `codex exec --sandbox read-only` na sua máquina, o que você escolher em Configurações, com o seu próprio login: sem chave de API e sem custo além do seu plano.
 - `--tools ""` faz o modelo só responder com texto; ele não lê nem altera seus arquivos.
 - `--safe-mode` deixa o seu `CLAUDE.md`, hooks e plugins fora da geração, então o agente sai igual para todo mundo.
 - Nada mais sai do seu computador. O app não tem telemetria nem conta.
@@ -82,7 +82,7 @@ Para adicionar uma área, edite `catalog/areas.json`. Para adicionar um agente b
 
 ## Rodar a partir do código
 
-Precisa de Node 24, Rust stable e Claude Code.
+Precisa de Node 24, Rust stable e Claude Code ou Codex.
 
 ```bash
 cd app
@@ -99,7 +99,7 @@ Agentes novos, áreas, traduções e correções são bem-vindos. Comece pelo [C
 
 ## Patrocinar
 
-O Home of Builders é grátis e continua grátis. Se ele te poupou uma contratação ou um fim de semana, [me pague um café](https://buymeacoffee.com/hsnrique): isso paga agentes novos e mantém o app em dia com o Claude Code.
+O Home of Builders é grátis e continua grátis. Se ele te poupou uma contratação ou um fim de semana, [me pague um café](https://buymeacoffee.com/hsnrique): isso paga agentes novos e mantém o app em dia com o Claude Code e o Codex.
 
 ## Créditos
 

@@ -92,7 +92,10 @@ function switchUiLanguage(lang: Lang): void {
 
 async function boot(): Promise<void> {
   setLocale(ctx.state.create.lang);
-  ctx.state.claudePath = await api.claudeStatus();
+  const paths = await api.enginePaths();
+  ctx.state.enginePaths = paths;
+  // Without a saved choice, use whichever CLI is installed, Claude Code first.
+  ctx.state.engine = prefs.loadEngine() ?? (paths.codex && !paths.claude ? "codex" : "claude");
   try {
     await ctx.openLibrary(prefs.loadWorkspace());
   } catch (error) {

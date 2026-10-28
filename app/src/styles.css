@@ -113,6 +113,9 @@ h1, h2, p { margin: 0; }
 .btn.wide { width: 100%; padding: 9px; }
 .actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .actions.end { justify-content: flex-end; }
+.actions.install { align-items: center; }
+.setting .segmented { align-self: flex-start; }
+.setting .segment { white-space: nowrap; }
 
 input, select, textarea {
   width: 100%;

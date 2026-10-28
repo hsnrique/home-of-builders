@@ -1,9 +1,10 @@
 use serde::Deserialize;
 
 use crate::catalog::Area;
+use crate::engine::Engine;
 use crate::prompt::{self, Brief, Lang};
 use crate::workspace::Workspace;
-use crate::{claude, frontmatter, library};
+use crate::{frontmatter, library};
 
 pub const MAX_NEEDS_CHARS: usize = 4_000;
 
@@ -15,6 +16,7 @@ pub struct GenerateRequest {
     pub area_id: Option<String>,
     pub needs: String,
     pub lang: Lang,
+    pub engine: Engine,
 }
 
 /// Base agent × area × needs × language → a new agent file, returned for review
@@ -22,8 +24,7 @@ pub struct GenerateRequest {
 pub fn generate(request: &GenerateRequest) -> Result<String, String> {
     let ws = Workspace::open(&request.workspace)?;
     let prompt = build_prompt(&ws, request)?;
-    let binary = claude::locate().ok_or("error.claudeNotFound")?;
-    let raw = claude::run(&binary, prompt::SYSTEM_PROMPT, &prompt)?;
+    let raw = request.engine.run(prompt::SYSTEM_PROMPT, &prompt)?;
     frontmatter::extract_agent(&raw)
         .map(|agent| frontmatter::normalize(&agent))
         .ok_or_else(|| "error.invalidOutput".into())
@@ -70,6 +71,7 @@ mod tests {
             area_id: area_id.map(String::from),
             needs: needs.into(),
             lang: Lang::Pt,
+            engine: Engine::Claude,
         }
     }
 
@@ -105,11 +107,21 @@ mod tests {
         assert_eq!(prompt_for(&outside).unwrap_err(), "error.agentNotFound");
     }
 
-    /// Calls the real Claude Code CLI: `cargo test -- --ignored generates_a_real_agent`.
+    /// Calls the real CLIs: `cargo test -- --ignored generates_a_real_agent`.
     #[test]
     #[ignore]
-    fn generates_a_real_agent() {
+    fn generates_a_real_agent_with_claude() {
         let agent = generate(&request(Some("healthcare"), "Dental implants, R$5k/month")).unwrap();
+        println!("{agent}");
+        assert!(frontmatter::parse(&agent).is_some());
+    }
+
+    #[test]
+    #[ignore]
+    fn generates_a_real_agent_with_codex() {
+        let mut req = request(Some("healthcare"), "Dental implants, R$5k/month");
+        req.engine = Engine::Codex;
+        let agent = generate(&req).unwrap();
         println!("{agent}");
         assert!(frontmatter::parse(&agent).is_some());
     }
