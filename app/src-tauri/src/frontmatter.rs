@@ -71,6 +71,11 @@ pub fn normalize(markdown: &str) -> String {
     format!("---\n{}\n---{body}", kept.join("\n"))
 }
 
+/// Everything after the closing `---`.
+pub fn body(markdown: &str) -> Option<&str> {
+    split_frontmatter(markdown).map(|(_, body)| body)
+}
+
 /// Splits an LF file into the frontmatter lines and everything after the closing `---`.
 fn split_frontmatter(markdown: &str) -> Option<(&str, &str)> {
     let rest = markdown.strip_prefix("---\n")?;

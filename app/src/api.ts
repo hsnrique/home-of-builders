@@ -2,6 +2,10 @@ import { invoke } from "@tauri-apps/api/core";
 
 export type Lang = "en" | "pt";
 
+export type Engine = "claude" | "codex";
+
+export const ENGINE_NAMES: Record<Engine, string> = { claude: "Claude Code", codex: "Codex" };
+
 export interface AgentSummary {
   path: string;
   name: string;
@@ -36,6 +40,6 @@ export const api = {
   generateAgent: (request: GenerateRequest) => invoke<string>("generate_agent", { request }),
   saveAgent: (workspace: string, lang: Lang, markdown: string) =>
     invoke<AgentSummary>("save_agent", { workspace, lang, markdown }),
-  installAgent: (workspace: string, path: string, overwrite: boolean) =>
-    invoke<string>("install_agent", { workspace, path, overwrite }),
+  installAgent: (workspace: string, path: string, engine: Engine, overwrite: boolean) =>
+    invoke<string>("install_agent", { workspace, path, engine, overwrite }),
 };

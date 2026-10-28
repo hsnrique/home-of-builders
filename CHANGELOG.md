@@ -4,6 +4,10 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Added
+
+- Install any agent in Codex. The app converts it to the TOML format Codex reads and saves it in `~/.codex/agents`.
+
 ### Changed
 
 - Release downloads are macOS only. The app still runs on Windows and Linux: build it from source.
