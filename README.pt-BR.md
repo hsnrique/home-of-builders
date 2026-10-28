@@ -54,7 +54,7 @@ Os playbooks aplicam os frameworks dos livros de referência de cada área e diz
 
 1. Instale o [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) e rode `claude` uma vez para fazer login.
 2. Baixe o app do seu sistema em [Releases](https://github.com/hsnrique/home-of-builders/releases/latest).
-   - **macOS:** os builds ainda não são notarizados. Na primeira vez, clique com o botão direito no app e escolha **Abrir**.
+   - **macOS:** os builds ainda não são notarizados. Na primeira vez, abra o app, vá em **Ajustes do Sistema → Privacidade e Segurança** e clique em **Abrir Mesmo Assim**.
    - **Windows:** se o SmartScreen aparecer, clique em **Mais informações** e depois **Executar assim mesmo**.
 3. Abra. A biblioteca é criada em `Documentos/Home of Builders` com todos os agentes base.
 
