@@ -51,6 +51,33 @@ pub fn rename(markdown: &str, new_name: &str) -> String {
         .collect()
 }
 
+/// Rewrites `description` as a folded block scalar (`description: >-`). Descriptions carry
+/// "Examples: ..." and other colons, which strict YAML parsers (GitHub, Claude Code)
+/// reject in a plain scalar. Idempotent; files without frontmatter come back unchanged.
+pub fn normalize(markdown: &str) -> String {
+    let (Some(meta), Some((front, body))) = (parse(markdown), split_frontmatter(markdown)) else {
+        return markdown.to_string();
+    };
+    let mut kept = Vec::new();
+    let mut lines = front.lines().peekable();
+    while let Some(line) = lines.next() {
+        if !line.starts_with("description:") {
+            kept.push(line.to_string());
+            continue;
+        }
+        while lines.next_if(|l| l.starts_with([' ', '\t'])).is_some() {}
+        kept.push(format!("description: >-\n  {}", meta.description));
+    }
+    format!("---\n{}\n---{body}", kept.join("\n"))
+}
+
+/// Splits an LF file into the frontmatter lines and everything after the closing `---`.
+fn split_frontmatter(markdown: &str) -> Option<(&str, &str)> {
+    let rest = markdown.strip_prefix("---\n")?;
+    let end = rest.find("\n---")?;
+    Some((&rest[..end], &rest[end + 4..]))
+}
+
 fn block(markdown: &str) -> Option<&str> {
     let rest = markdown
         .trim_start_matches('\u{feff}')
@@ -174,5 +201,27 @@ mod tests {
         let renamed = rename(AGENT, "traffic-manager-2");
         assert_eq!(parse(&renamed).unwrap().name, "traffic-manager-2");
         assert!(renamed.ends_with("# Body\n"));
+    }
+
+    #[test]
+    fn normalize_folds_the_description_and_keeps_the_rest() {
+        let normalized = normalize(AGENT);
+        assert_eq!(
+            normalized,
+            "---\nname: traffic-manager\ndescription: >-\n  Runs ads. Examples: \"x\"\ntools: Read\n---\n\n# Body\n"
+        );
+        assert_eq!(parse(&normalized), parse(AGENT));
+    }
+
+    #[test]
+    fn normalize_is_idempotent_and_replaces_existing_blocks() {
+        let folded = "---\nname: seo\ndescription: >\n  Ranks pages\n  on Google.\nmodel: inherit\n---\nbody";
+        let once = normalize(folded);
+        assert_eq!(
+            once,
+            "---\nname: seo\ndescription: >-\n  Ranks pages on Google.\nmodel: inherit\n---\nbody"
+        );
+        assert_eq!(normalize(&once), once);
+        assert_eq!(normalize("# no frontmatter"), "# no frontmatter");
     }
 }

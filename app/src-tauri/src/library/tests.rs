@@ -77,3 +77,30 @@ fn install_copies_by_name_and_asks_before_overwriting() {
     );
     assert!(install(&ws, "agents/core/copywriter.md", &target, true).is_ok());
 }
+
+#[test]
+fn saved_agents_get_yaml_safe_frontmatter() {
+    let (dir, ws) = temp_workspace("yaml");
+    let colon = "---\nname: ads\ndescription: Runs ads. Examples: \"go\"\n---\n\n# Ads\n";
+    save(&ws, Lang::En, colon).unwrap();
+    let saved = fs::read_to_string(dir.join("agents/generated/en/ads.md")).unwrap();
+    assert!(saved.contains("description: >-\n  Runs ads. Examples: \"go\"\n"));
+}
+
+/// Every agent shipped in this repo must already be in the normalized, YAML-safe form.
+#[test]
+fn shipped_agents_have_yaml_safe_frontmatter() {
+    let root = crate::workspace::repo_root().unwrap();
+    let ws = Workspace::open(root.to_str().unwrap()).unwrap();
+    let agents = scan(&ws);
+    assert!(agents.len() >= 19, "found {} agents", agents.len());
+    for agent in agents {
+        let markdown = read(&ws, &agent.path).unwrap();
+        assert_eq!(
+            frontmatter::normalize(&markdown),
+            markdown,
+            "{} is not normalized",
+            agent.path
+        );
+    }
+}
