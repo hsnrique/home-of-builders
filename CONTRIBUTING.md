@@ -68,5 +68,7 @@ Use [Conventional Commits](https://www.conventionalcommits.org): `feat:`, `fix:`
 
 1. Bump the version in `app/package.json`, `app/src-tauri/Cargo.toml` and `app/src-tauri/tauri.conf.json`.
 2. Add the changes to [CHANGELOG.md](CHANGELOG.md).
-3. Tag and push: `git tag v0.2.0 && git push origin v0.2.0`.
-4. The release workflow builds macOS, Windows and Linux installers into a draft release. Review it and publish.
+3. Tag and push: `git tag -a v0.2.0 -m "Home of Builders 0.2.0" && git push origin v0.2.0`.
+4. On a Mac with a Developer ID certificate, check out the tag and run `scripts/release-macos.sh` with `APPLE_SIGNING_IDENTITY` and `NOTARY_PROFILE` set. It builds a universal DMG, signs and notarizes it, and uploads it to a draft release. Review it and publish.
+
+Release downloads are macOS only. Windows and Linux users build from source.
