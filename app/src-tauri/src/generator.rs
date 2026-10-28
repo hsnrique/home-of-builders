@@ -24,7 +24,9 @@ pub fn generate(request: &GenerateRequest) -> Result<String, String> {
     let prompt = build_prompt(&ws, request)?;
     let binary = claude::locate().ok_or("error.claudeNotFound")?;
     let raw = claude::run(&binary, prompt::SYSTEM_PROMPT, &prompt)?;
-    frontmatter::extract_agent(&raw).ok_or_else(|| "error.invalidOutput".into())
+    frontmatter::extract_agent(&raw)
+        .map(|agent| frontmatter::normalize(&agent))
+        .ok_or_else(|| "error.invalidOutput".into())
 }
 
 fn build_prompt(ws: &Workspace, request: &GenerateRequest) -> Result<String, String> {

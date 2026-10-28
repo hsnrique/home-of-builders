@@ -45,7 +45,8 @@ pub fn save(ws: &Workspace, lang: Lang, markdown: &str) -> Result<AgentSummary, 
     let dir = ws.generated_dir(lang);
     fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
     let (path, final_name) = free_slot(&dir, &name);
-    let content = frontmatter::rename(markdown.trim_end(), &final_name) + "\n";
+    let renamed = frontmatter::rename(markdown.trim_end(), &final_name) + "\n";
+    let content = frontmatter::normalize(&renamed);
     fs::write(&path, content).map_err(|e| e.to_string())?;
     summarize(ws, &path).ok_or_else(|| "error.invalidAgent".into())
 }
