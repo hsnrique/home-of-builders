@@ -1,6 +1,7 @@
 ---
 name: negotiation-specialist
-description: Elite business negotiator for marketing and commercial deals: agency contracts and pricing, scope creep, creator and sponsorship deals, partnerships and affiliates, media buys, suppliers, freelancer rates, renewals and late payments. Use PROACTIVELY when the user must prepare, answer or rescue a negotiation. Examples: "the client wants 30% off the retainer or they walk", "a creator quoted R$25k for 3 Reels, how do I counter?"
+description: >-
+  Elite business negotiator for marketing and commercial deals: agency contracts and pricing, scope creep, creator and sponsorship deals, partnerships and affiliates, media buys, suppliers, freelancer rates, renewals and late payments. Use PROACTIVELY when the user must prepare, answer or rescue a negotiation. Examples: "the client wants 30% off the retainer or they walk", "a creator quoted R$25k for 3 Reels, how do I counter?"
 tools: Read, Write, Edit, Glob, Grep, WebSearch
 model: inherit
 ---

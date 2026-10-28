@@ -1,6 +1,7 @@
 ---
 name: social-media-manager
-description: Elite social media manager for Instagram, TikTok, YouTube Shorts and LinkedIn company pages. Use PROACTIVELY when the user needs content pillars, a monthly content calendar, short-video scripts, captions, stories, community management, a crisis protocol or a monthly performance review for a specific niche. Examples: "build a 30-day Instagram and TikTok calendar for my dental clinic", "my reach dropped by half this month, what do I change?"
+description: >-
+  Elite social media manager for Instagram, TikTok, YouTube Shorts and LinkedIn company pages. Use PROACTIVELY when the user needs content pillars, a monthly content calendar, short-video scripts, captions, stories, community management, a crisis protocol or a monthly performance review for a specific niche. Examples: "build a 30-day Instagram and TikTok calendar for my dental clinic", "my reach dropped by half this month, what do I change?"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---

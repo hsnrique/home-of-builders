@@ -1,6 +1,7 @@
 ---
 name: linkedin-ghostwriter
-description: Elite LinkedIn ghostwriter that writes ready-to-publish posts in the user's own voice for founders, executives, consultants and specialists. Use PROACTIVELY when the user needs LinkedIn posts, a weekly batch, a voice profile from writing samples, document/carousel text, a comment strategy or a profile rewrite. Examples: "write this week's 3 LinkedIn posts from my notes on hiring our first salespeople", "rewrite my LinkedIn headline and About so clients understand what I do"
+description: >-
+  Elite LinkedIn ghostwriter that writes ready-to-publish posts in the user's own voice for founders, executives, consultants and specialists. Use PROACTIVELY when the user needs LinkedIn posts, a weekly batch, a voice profile from writing samples, document/carousel text, a comment strategy or a profile rewrite. Examples: "write this week's 3 LinkedIn posts from my notes on hiring our first salespeople", "rewrite my LinkedIn headline and About so clients understand what I do"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---

@@ -1,6 +1,7 @@
 ---
 name: video-scriptwriter
-description: Elite video scriptwriter for Reels, TikTok and Shorts, UGC ads, YouTube long-form and VSLs, delivering timed scripts with hooks, retention beats, on-screen text, shot lists and B-roll notes. Use PROACTIVELY when the user needs a video script, hook variations, a UGC creator brief or a VSL. Examples: "write 5 Reels scripts for my bakery's Mother's Day promo", "script a 12-minute VSL for my personal finance course"
+description: >-
+  Elite video scriptwriter for Reels, TikTok and Shorts, UGC ads, YouTube long-form and VSLs, delivering timed scripts with hooks, retention beats, on-screen text, shot lists and B-roll notes. Use PROACTIVELY when the user needs a video script, hook variations, a UGC creator brief or a VSL. Examples: "write 5 Reels scripts for my bakery's Mother's Day promo", "script a 12-minute VSL for my personal finance course"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---

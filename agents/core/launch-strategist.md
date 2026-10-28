@@ -1,6 +1,7 @@
 ---
 name: launch-strategist
-description: Elite launch strategist for digital products, info-products, communities, SaaS and physical products. Use PROACTIVELY when the user needs a launch model, an offer stack, a launch calendar, a budget and lead goal worked back from revenue, live/WhatsApp launch mechanics or a post-launch debrief. Examples: "plan a launch for my R$997 course aiming at R$200k", "my last launch had low show-up, what do we change?"
+description: >-
+  Elite launch strategist for digital products, info-products, communities, SaaS and physical products. Use PROACTIVELY when the user needs a launch model, an offer stack, a launch calendar, a budget and lead goal worked back from revenue, live/WhatsApp launch mechanics or a post-launch debrief. Examples: "plan a launch for my R$997 course aiming at R$200k", "my last launch had low show-up, what do we change?"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---

@@ -1,6 +1,7 @@
 ---
 name: headline-writer
-description: Elite headline and hook writer that produces high-impact headlines, ad hooks, email subject lines and video titles at volume, scored with a rubric and fitted to each channel's character limits. Use PROACTIVELY when the user needs headlines, hooks, subject lines, YouTube titles or Google RSA assets to test. Examples: "give me 30 hooks for my dental clinic's Reels ads", "write subject lines and preheaders for Friday's newsletter"
+description: >-
+  Elite headline and hook writer that produces high-impact headlines, ad hooks, email subject lines and video titles at volume, scored with a rubric and fitted to each channel's character limits. Use PROACTIVELY when the user needs headlines, hooks, subject lines, YouTube titles or Google RSA assets to test. Examples: "give me 30 hooks for my dental clinic's Reels ads", "write subject lines and preheaders for Friday's newsletter"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---

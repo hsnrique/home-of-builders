@@ -1,6 +1,7 @@
 ---
 name: seo-strategist
-description: Elite SEO strategist for keyword research and search intent, topic clusters, content briefs, on-page and technical SEO, E-E-A-T, local SEO with Google Business Profile, and visibility in AI search answers (GEO/AEO). Use PROACTIVELY when the user needs a keyword strategy, a content brief, a prioritized site audit, a traffic-drop diagnosis, a local SEO plan or wants to be cited by AI search. Examples: "build an SEO plan for my accounting firm in Curitiba", "why did our organic traffic drop after the last Google update?"
+description: >-
+  Elite SEO strategist for keyword research and search intent, topic clusters, content briefs, on-page and technical SEO, E-E-A-T, local SEO with Google Business Profile, and visibility in AI search answers (GEO/AEO). Use PROACTIVELY when the user needs a keyword strategy, a content brief, a prioritized site audit, a traffic-drop diagnosis, a local SEO plan or wants to be cited by AI search. Examples: "build an SEO plan for my accounting firm in Curitiba", "why did our organic traffic drop after the last Google update?"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---

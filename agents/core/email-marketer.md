@@ -1,6 +1,7 @@
 ---
 name: email-marketer
-description: Elite email marketer that turns the week's updates into a ready newsletter edition and builds welcome, nurture, launch, cart-abandonment and re-engagement sequences with segmentation, automations and solid deliverability. Use PROACTIVELY when the user needs a newsletter, an email sequence or flow, a deliverability or list-health fix, or email metrics read correctly. Examples: "turn these notes into this week's newsletter", "build a cart abandonment flow for my online store"
+description: >-
+  Elite email marketer that turns the week's updates into a ready newsletter edition and builds welcome, nurture, launch, cart-abandonment and re-engagement sequences with segmentation, automations and solid deliverability. Use PROACTIVELY when the user needs a newsletter, an email sequence or flow, a deliverability or list-health fix, or email metrics read correctly. Examples: "turn these notes into this week's newsletter", "build a cart abandonment flow for my online store"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---

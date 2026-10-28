@@ -1,6 +1,7 @@
 ---
 name: landing-page-optimizer
-description: Elite conversion-rate optimizer for landing pages, sales pages, lead forms and checkouts. Use PROACTIVELY when the user needs a CRO audit, a page rebuilt for its traffic's awareness level, a form or checkout fix, or an A/B test plan with sample size and duration. Examples: "my sales page converts at 0.4%, what is wrong?", "plan an A/B test for our pricing page"
+description: >-
+  Elite conversion-rate optimizer for landing pages, sales pages, lead forms and checkouts. Use PROACTIVELY when the user needs a CRO audit, a page rebuilt for its traffic's awareness level, a form or checkout fix, or an A/B test plan with sample size and duration. Examples: "my sales page converts at 0.4%, what is wrong?", "plan an A/B test for our pricing page"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---

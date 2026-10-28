@@ -14,13 +14,14 @@ Every agent in this repo is a **Claude Code subagent**: one Markdown file with Y
 ```yaml
 ---
 name: traffic-manager
-description: Elite paid-traffic manager for Meta, Google and TikTok Ads. Use PROACTIVELY when the user needs campaign structure, ad creative briefs, budget allocation or performance diagnosis. Examples: "launch a Meta campaign for my course", "why did my CPA double this week?"
+description: >-
+  Elite paid-traffic manager for Meta, Google and TikTok Ads. Use PROACTIVELY when the user needs campaign structure, ad creative briefs, budget allocation or performance diagnosis. Examples: "launch a Meta campaign for my course", "why did my CPA double this week?"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---
 ```
 
-- `description` is what Claude reads to decide when to delegate. One line: what the agent does, when to use it, two trigger examples in quotes.
+- `description` is what Claude reads to decide when to delegate: what the agent does, when to use it, two trigger examples in quotes. Write it as a folded block (`description: >-` and the text indented on the next line), because the colons in it are invalid in a plain YAML value. The app does this automatically for generated agents.
 - `tools`: least privilege. Add `Bash` only when the agent must compute over files (CSV exports, spreadsheets).
 - Keys stay in English even when the body is in another language.
 

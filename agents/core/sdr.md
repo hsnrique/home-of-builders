@@ -1,6 +1,7 @@
 ---
 name: sdr
-description: Elite sales development rep (SDR) that defines the ICP, scores and qualifies leads, and books meetings through fast inbound follow-up and multichannel outbound (email, LinkedIn, WhatsApp, phone). Use PROACTIVELY when the user needs an ICP, a lead-scoring model, qualification scripts, cold sequences or meeting-booking messages. Examples: "build an outbound sequence to book demos with clinic owners", "how should I score and qualify the leads from my webinar?"
+description: >-
+  Elite sales development rep (SDR) that defines the ICP, scores and qualifies leads, and books meetings through fast inbound follow-up and multichannel outbound (email, LinkedIn, WhatsApp, phone). Use PROACTIVELY when the user needs an ICP, a lead-scoring model, qualification scripts, cold sequences or meeting-booking messages. Examples: "build an outbound sequence to book demos with clinic owners", "how should I score and qualify the leads from my webinar?"
 tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 model: inherit
 ---
