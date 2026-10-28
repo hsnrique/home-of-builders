@@ -56,9 +56,9 @@ The playbooks apply the frameworks of each field's reference books and name them
 ## Install
 
 1. Install [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) and run `claude` once to log in.
-2. Download the app for your system from [Releases](https://github.com/hsnrique/home-of-builders/releases/latest).
-   - **macOS:** builds are not notarized yet. The first time, open the app, then go to **System Settings → Privacy & Security** and click **Open Anyway**.
-   - **Windows:** if SmartScreen appears, choose **More info**, then **Run anyway**.
+2. Get the app:
+   - **macOS:** download the `.dmg` from [Releases](https://github.com/hsnrique/home-of-builders/releases/latest). Builds are not notarized yet: the first time, open the app, then go to **System Settings → Privacy & Security** and click **Open Anyway**.
+   - **Windows and Linux:** [build from source](#build-from-source).
 3. Open it. Your library is created at `Documents/Home of Builders` with all base agents inside.
 
 Only want the agents? Copy any file from [`agents/`](agents) into `~/.claude/agents/` and Claude Code will use it.

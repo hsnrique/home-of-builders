@@ -53,9 +53,9 @@ Os playbooks aplicam os frameworks dos livros de referência de cada área e diz
 ## Instalação
 
 1. Instale o [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) e rode `claude` uma vez para fazer login.
-2. Baixe o app do seu sistema em [Releases](https://github.com/hsnrique/home-of-builders/releases/latest).
-   - **macOS:** os builds ainda não são notarizados. Na primeira vez, abra o app, vá em **Ajustes do Sistema → Privacidade e Segurança** e clique em **Abrir Mesmo Assim**.
-   - **Windows:** se o SmartScreen aparecer, clique em **Mais informações** e depois **Executar assim mesmo**.
+2. Pegue o app:
+   - **macOS:** baixe o `.dmg` em [Releases](https://github.com/hsnrique/home-of-builders/releases/latest). Os builds ainda não são notarizados: na primeira vez, abra o app, vá em **Ajustes do Sistema → Privacidade e Segurança** e clique em **Abrir Mesmo Assim**.
+   - **Windows e Linux:** [rode a partir do código](#rodar-a-partir-do-código).
 3. Abra. A biblioteca é criada em `Documentos/Home of Builders` com todos os agentes base.
 
 Só quer os agentes? Copie qualquer arquivo de [`agents/`](agents) para `~/.claude/agents/` e o Claude Code passa a usar.
