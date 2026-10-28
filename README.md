@@ -106,6 +106,6 @@ Home of Builders is free and stays free. If it saves you a hire or a weekend, [s
 
 ## Credits
 
-Created and maintained by **Henrique Martins** ([@hsnrique](https://github.com/hsnrique), [hsnrique.com](https://hsnrique.com)).
+Created and maintained by **Henrique Braga** ([@hsnrique](https://github.com/hsnrique), [hsnrique.com](https://hsnrique.com)).
 
 Released under the [MIT License](LICENSE).
