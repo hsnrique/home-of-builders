@@ -1,30 +1,36 @@
 version: 2
+
+# One grouped pull request per ecosystem each month: updates stay current without a stream
+# of single-package PRs.
 updates:
   - package-ecosystem: npm
     directory: /app
     schedule:
-      interval: weekly
+      interval: monthly
     groups:
-      npm:
-        update-types: [minor, patch]
+      app:
+        patterns: ["*"]
 
   - package-ecosystem: npm
     directory: /site
     schedule:
-      interval: weekly
+      interval: monthly
     groups:
       site:
-        update-types: [minor, patch]
+        patterns: ["*"]
 
   - package-ecosystem: cargo
     directory: /app/src-tauri
     schedule:
-      interval: weekly
+      interval: monthly
     groups:
       cargo:
-        update-types: [minor, patch]
+        patterns: ["*"]
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
