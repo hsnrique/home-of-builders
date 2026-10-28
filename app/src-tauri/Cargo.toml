@@ -1,6 +1,6 @@
 [package]
 name = "home-of-builders"
-version = "0.1.1"
+version = "0.1.2"
 description = "Build elite marketing agents for Claude Code"
 authors = ["Henrique Braga"]
 license = "MIT"
