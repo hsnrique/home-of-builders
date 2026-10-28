@@ -1,0 +1,23 @@
+name: New agent or area
+description: Suggest a base agent, an area of interest, or an improvement to an existing agent.
+labels: [agents]
+body:
+  - type: input
+    id: role
+    attributes:
+      label: Agent or area
+      placeholder: e.g. affiliate-manager, or the area "Pet shops"
+    validations:
+      required: true
+  - type: textarea
+    id: job
+    attributes:
+      label: What it should do
+      description: The jobs it takes off your plate and the deliverables you expect.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Reference books or frameworks
+      description: The canonical sources its playbooks should apply, if you know them.
