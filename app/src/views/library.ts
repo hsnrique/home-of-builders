@@ -4,7 +4,7 @@ import type { AgentSummary } from "../api";
 import { h } from "../dom";
 import { groupAgents, groupLabel } from "../groups";
 import { errorText, t } from "../i18n";
-import { installAgent } from "../install";
+import { installButtons } from "../install";
 import { skeleton } from "../skeleton";
 import type { Ctx } from "../state";
 
@@ -101,7 +101,7 @@ function detailActions(ctx: Ctx, agent: AgentSummary): HTMLElement[] {
   };
   return [
     h("button", { class: "btn quiet", onclick: () => revealItemInDir(`${workspace}/${agent.path}`) }, t("action.showFile")),
-    h("button", { class: "btn", onclick: () => installAgent(workspace, agent) }, t("action.install")),
+    ...installButtons(workspace, agent),
     h("button", { class: "btn primary", onclick: useAsBase }, t("action.useAsBase")),
   ];
 }

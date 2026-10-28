@@ -3,6 +3,7 @@ use std::path::{Path, PathBuf};
 
 use serde::Serialize;
 
+use crate::engine::Engine;
 use crate::frontmatter::{self, is_valid_name};
 use crate::prompt::Lang;
 use crate::workspace::Workspace;
@@ -54,16 +55,22 @@ pub fn save(ws: &Workspace, lang: Lang, markdown: &str) -> Result<AgentSummary, 
 pub fn install(
     ws: &Workspace,
     path: &str,
-    target_dir: &Path,
+    engine: Engine,
+    home: &Path,
     overwrite: bool,
 ) -> Result<String, String> {
     let agent = find(ws, path)?;
-    let target = target_dir.join(format!("{}.md", agent.name));
+    let target = engine.agent_file(home, &agent.name);
     if target.exists() && !overwrite {
         return Err("error.installExists".into());
     }
-    fs::create_dir_all(target_dir).map_err(|e| e.to_string())?;
-    fs::copy(ws.root().join(&agent.path), &target).map_err(|e| e.to_string())?;
+    let markdown = fs::read_to_string(ws.root().join(&agent.path)).map_err(|e| e.to_string())?;
+    let content = engine.render(&markdown).ok_or("error.invalidAgent")?;
+    let dir = target
+        .parent()
+        .expect("agent files always live in a folder");
+    fs::create_dir_all(dir).map_err(|e| e.to_string())?;
+    fs::write(&target, content).map_err(|e| e.to_string())?;
     Ok(target.display().to_string())
 }
 

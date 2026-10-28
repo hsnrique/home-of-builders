@@ -3,7 +3,7 @@ import { revealItemInDir } from "@tauri-apps/plugin-opener";
 import { api } from "../api";
 import { h } from "../dom";
 import { errorText, t } from "../i18n";
-import { installAgent } from "../install";
+import { installButtons } from "../install";
 import { skeleton } from "../skeleton";
 import type { Ctx } from "../state";
 
@@ -99,7 +99,7 @@ function saved(ctx: Ctx): HTMLElement {
       h("button", { class: "btn quiet", onclick: () => revealItemInDir(`${workspace}/${agent.path}`) }, t("action.showFile")),
       h("button", { class: "btn", onclick: open }, t("action.openInLibrary")),
       h("button", { class: "btn", onclick: another }, t("action.createAnother")),
-      h("button", { class: "btn primary", onclick: () => installAgent(workspace, agent) }, t("action.install")),
+      ...installButtons(workspace, agent),
     ),
   );
 }

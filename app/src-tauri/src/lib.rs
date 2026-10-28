@@ -1,5 +1,7 @@
 mod catalog;
 mod claude;
+mod codex_agent;
+mod engine;
 mod frontmatter;
 mod generator;
 mod library;
@@ -12,6 +14,7 @@ use tauri::Manager;
 use tauri::path::BaseDirectory;
 
 use catalog::Area;
+use engine::Engine;
 use generator::GenerateRequest;
 use library::AgentSummary;
 use prompt::Lang;
@@ -80,11 +83,17 @@ fn install_agent(
     app: tauri::AppHandle,
     workspace: String,
     path: String,
+    engine: Engine,
     overwrite: bool,
 ) -> Result<String, String> {
     let home = app.path().home_dir().map_err(|e| e.to_string())?;
-    let target = home.join(".claude").join("agents");
-    library::install(&Workspace::open(&workspace)?, &path, &target, overwrite)
+    library::install(
+        &Workspace::open(&workspace)?,
+        &path,
+        engine,
+        &home,
+        overwrite,
+    )
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]

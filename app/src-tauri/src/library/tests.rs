@@ -68,14 +68,47 @@ fn save_rejects_invalid_or_oversized_agents() {
 #[test]
 fn install_copies_by_name_and_asks_before_overwriting() {
     let (dir, ws) = temp_workspace("install");
-    let target = dir.join("claude-agents");
-    let installed = install(&ws, "agents/core/copywriter.md", &target, false).unwrap();
-    assert!(installed.ends_with("copywriter.md"));
+    let home = dir.join("home");
+    let path = "agents/core/copywriter.md";
+    let installed = install(&ws, path, Engine::Claude, &home, false).unwrap();
     assert_eq!(
-        install(&ws, "agents/core/copywriter.md", &target, false).unwrap_err(),
+        installed,
+        home.join(".claude/agents/copywriter.md")
+            .display()
+            .to_string()
+    );
+    assert_eq!(fs::read_to_string(&installed).unwrap(), agent("copywriter"));
+    assert_eq!(
+        install(&ws, path, Engine::Claude, &home, false).unwrap_err(),
         "error.installExists"
     );
-    assert!(install(&ws, "agents/core/copywriter.md", &target, true).is_ok());
+    assert!(install(&ws, path, Engine::Claude, &home, true).is_ok());
+}
+
+#[test]
+fn install_writes_codex_agents_as_toml() {
+    let (dir, ws) = temp_workspace("codex");
+    let home = dir.join("home");
+    let installed = install(
+        &ws,
+        "agents/core/copywriter.md",
+        Engine::Codex,
+        &home,
+        false,
+    )
+    .unwrap();
+    assert_eq!(
+        installed,
+        home.join(".codex/agents/copywriter.toml")
+            .display()
+            .to_string()
+    );
+    let codex: toml::Table = toml::from_str(&fs::read_to_string(&installed).unwrap()).unwrap();
+    assert_eq!(codex["name"].as_str(), Some("copywriter"));
+    assert_eq!(
+        codex["developer_instructions"].as_str(),
+        Some("# copywriter")
+    );
 }
 
 #[test]
@@ -100,6 +133,11 @@ fn shipped_agents_have_yaml_safe_frontmatter() {
             frontmatter::normalize(&markdown),
             markdown,
             "{} is not normalized",
+            agent.path
+        );
+        assert!(
+            Engine::Codex.render(&markdown).is_some(),
+            "{} does not convert for Codex",
             agent.path
         );
     }
