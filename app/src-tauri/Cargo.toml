@@ -2,7 +2,7 @@
 name = "home-of-builders"
 version = "0.1.0"
 description = "Build elite marketing agents for Claude Code"
-authors = ["Henrique Martins"]
+authors = ["Henrique Braga"]
 license = "MIT"
 repository = "https://github.com/hsnrique/home-of-builders"
 edition = "2021"

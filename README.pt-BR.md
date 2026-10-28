@@ -103,6 +103,6 @@ O Home of Builders é grátis e continua grátis. Se ele te poupou uma contrata�
 
 ## Créditos
 
-Criado e mantido por **Henrique Martins** ([@hsnrique](https://github.com/hsnrique), [hsnrique.com](https://hsnrique.com)).
+Criado e mantido por **Henrique Braga** ([@hsnrique](https://github.com/hsnrique), [hsnrique.com](https://hsnrique.com)).
 
 Licença [MIT](LICENSE).
